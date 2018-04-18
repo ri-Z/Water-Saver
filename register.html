@@ -5,8 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Register </title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="calendar.js"></script>
   </head>
   <body>
-      
+
+    <div id="form_container">
+      <h1><a>Register</a></h1>
+    </div>
+
+    <form id="form" class="form" enctype="multipart/form-data" method="post" action="register.html">
+      <label>
+          <label for="name">Name:</label>
+            <input id="name" type="text" name="name" value="" placeholder="Enter your Name"> <br>
+        <label for="age">Age:</label>
+          <input id="age" type="number" name="age" value=""> <br>
+            <label for="gender">Gender:</label>
+            <input id="gender" type="radio" name="gender" value="male"> <label for="male">Male</label>
+            <input id="gender" type="radio" name="gender" value="female"> <label for="female">Female</label>
+            <input id="gender" type="radio" name="gender" value="other"> <label for="other">Other</label> <br>
+        <label for="address">Address:</label>
+          <input id="address" type="text" name="address" value=""><br>
+        <label for="email">Email:</label>
+          <input id="mail" type="email" name="mail" value="" placeholder="Enter your Email"><br>
+        <label for="password">Password:</label>
+            <input id="password" type="password" name="password" value="" placeholder="Enter a Password"><br>
+        <label for="confPassword">Confirm Password:</label>
+            <input id="confPassword" type="password" name="confPassword" value="" placeholder="Confirm your Password"><br><br>
+        <input type="button" value="Submit" onclick="createperson()">
+      </label>
+    </form>
+
+    <script type="text/javascript">
+
+      function person(name, age, gender, address, mail, password, confPassword) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+        this.mail = mail;
+        this.password = password;
+        this.confPassword = confPassword;
+      }
+
+      function createperson() {
+
+        if (document.getElementById('password').value === document.getElementById('confPassword').value) {
+          name = document.getElementById('name').value;
+          age = document.getElementById('age').value;
+          gender = document.getElementById('gender').value;
+          address = document.getElementById('address').value;
+          mail = document.getElementById('mail').value;
+          password = document.getElementById('password').value;
+          confPassword = document.getElementById('confPassword').value;
+        } else {
+          alert('passwords dont match');
+        }
+
+        var obj = new person(name, age, gender, address, mail, password, confPassword);
+        console.log(obj);
+      }
+    </script>
+
   </body>
 </html>

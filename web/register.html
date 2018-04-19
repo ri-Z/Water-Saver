@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jQuery.js"></script>
     <title> Register </title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="calendar.js"></script>
@@ -19,10 +20,6 @@
             <input id="name" type="text" name="name" value="" placeholder="Enter your Name"> <br>
         <label for="age">Age:</label>
           <input id="age" type="number" name="age" value=""> <br>
-            <label for="gender">Gender:</label>
-            <input id="gender" type="radio" name="gender" value="male"> <label for="male">Male</label>
-            <input id="gender" type="radio" name="gender" value="female"> <label for="female">Female</label>
-            <input id="gender" type="radio" name="gender" value="other"> <label for="other">Other</label> <br>
         <label for="address">Address:</label>
           <input id="address" type="text" name="address" value=""><br>
         <label for="email">Email:</label>
@@ -35,12 +32,15 @@
       </label>
     </form>
 
-    <script type="text/javascript">
+<footer >
+    <p align="right"><a href="index.html"> Index Page Testing</a></p>
+</footer>
 
-      function person(name, age, gender, address, mail, password, confPassword) {
+    <!--<script type="text/javascript" src="javascript.js">
+
+      function person(name, age, address, mail, password, confPassword) {
         this.name = name;
         this.age = age;
-        this.gender = gender;
         this.address = address;
         this.mail = mail;
         this.password = password;
@@ -52,7 +52,6 @@
         if (document.getElementById('password').value === document.getElementById('confPassword').value) {
           name = document.getElementById('name').value;
           age = document.getElementById('age').value;
-          gender = document.getElementById('gender').value;
           address = document.getElementById('address').value;
           mail = document.getElementById('mail').value;
           password = document.getElementById('password').value;
@@ -61,10 +60,10 @@
           alert('passwords dont match');
         }
 
-        var obj = new person(name, age, gender, address, mail, password, confPassword);
+        var obj = new person(name, age, address, mail, password, confPassword);
         console.log(obj);
       }
-    </script>
-
+    </script>-->
+    <script type="text/javascript" src="javascript.js"></script>
   </body>
 </html>

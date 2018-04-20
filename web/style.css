@@ -6,8 +6,9 @@ html, body {
 }
 #one{
 
-      background-color:red;
+      background-color:#5dcccc;
       float: left;
+      height: 500px;
 
 }
 #art{
@@ -22,6 +23,12 @@ html, body {
       position: center;
 }
  
+ #right{
+
+      background-color: #25bdbd;
+      height: 500px;
+      margin-left: : 500px
+ }
 body {
       font-family: "Helvetica Neue",sans-serif;
       font-weight: lighter;
@@ -46,7 +53,7 @@ header {
       line-height: 60px;
       position: fixed;
       float: left;
-      margin: 16px 46px;
+      margin: 8px 46px;
       color: #fff;
       font-weight: bold;
       font-size: 20px;
@@ -73,7 +80,7 @@ nav ul {
 }
  
 nav.black ul {
-      background: #000;
+      background: #5dcccc;
 }
  
 nav ul li {

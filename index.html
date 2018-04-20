@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Our Site</title>
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+      <div class="wrapper">
+            <header>
+                      
+                  <nav>
+
+                        <div class="menu-icon">
+                              <i class="fa fa-bars fa-2x"></i>
+                        </div>
+
+                        <div class="logo">
+                              <img src="LOGO2.png" width="60px" height="75px">
+                        </div>
+
+                        <div class="menu">
+                              <ul>
+                                    <li><a href="#"><b>LOGIN</b></li>
+                                    <li><a href="#"><b>BROWSE</b></li>
+                                    <li><a href="#"><b>MAKE A POST</b></li>
+                                    <li><a href="#"><b>ABOUT</b></li>
+                                    <li><a href="#"><b>CONTACT US</b></li>
+                                  
+                              </ul>
+                        </div>
+                   
+                   
+                  </nav>
+<img src="connect.jpg" width="" height="">
+            </header>
+ 
+
+            <div class="content">
+                  <section id="one"><p>.....................................</p></section>
+                <p id="right"> (site name) is a website used for institutional perposes in an attempt to help raise awarsness in the isntitution 
+            </div>
+      </div>
+
+      <script type="text/javascript">
+
+      // Menu-toggle button
+
+      $(document).ready(function() {
+            $(".menu-icon").on("click", function() {
+                  $("nav ul").toggleClass("showing");
+            });
+      });
+
+      // Scrolling Effect
+
+      $(window).on("scroll", function() {
+            if($(window).scrollTop()) {
+                  $('nav').addClass('black');
+            }
+
+            else {
+                  $('nav').removeClass('black');
+            }
+      })
+      </script>
+
+
+</body>
+</html>

@@ -71,12 +71,12 @@
 
     var name = document.getElementById('name').value;
     var age = document.getElementById('age').value;
-    
+
 
     // console.log(name);
     // console.log(age);
 
-    $.getJSON('user/'+name+'/'+age, end);
+    $.getJSON('user/'+name+'/'+age, end());
 
 function end(data){
   console.log(data);

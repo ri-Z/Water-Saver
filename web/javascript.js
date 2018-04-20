@@ -69,9 +69,11 @@
 
   but.onclick = function send(){
 
+    var admin = document.getElementById('admin').value;
     var name = document.getElementById('name').value;
     var age = document.getElementById('age').value;
-    
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
 
     // console.log(name);
     // console.log(age);

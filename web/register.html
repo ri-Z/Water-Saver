@@ -18,14 +18,16 @@
 
     <form id="form" class="form" enctype="multipart/form-data" method="post" action="register.html">
       <label>
+         <label for="admin">Admin:</label><br>
+            <input id="admin" type="radio" name="admin" value="yes">Yes <br>
+            <input id="admin" type="radio" name="admin" value="no">No <br>
           <label for="name">Name:</label>
             <input id="name" type="text" name="name" value="" placeholder="Enter your Name"> <br>
         <label for="age">Age:</label>
-          <input id="age" type="number" name="age" value=""> <br>
-        <label for="address">Address:</label>
-          <input id="address" type="text" name="address" value=""><br>
+          <input id="age" type="number" name="age" value=""> 
+       <br>
         <label for="email">Email:</label>
-          <input id="mail" type="email" name="mail" value="" placeholder="Enter your Email"><br>
+          <input id="email" type="email" name="email" value="" placeholder="Enter your Email"><br>
         <label for="password">Password:</label>
             <input id="password" type="password" name="password" value="" placeholder="Enter a Password"><br>
         <label for="confPassword">Confirm Password:</label>
@@ -40,10 +42,9 @@
 
     <!--<script type="text/javascript" src="javascript.js">
 
-      function person(name, age, address, mail, password, confPassword) {
+      function person(name, age, mail, password, confPassword) {
         this.name = name;
         this.age = age;
-        this.address = address;
         this.mail = mail;
         this.password = password;
         this.confPassword = confPassword;
@@ -54,7 +55,7 @@
         if (document.getElementById('password').value === document.getElementById('confPassword').value) {
           name = document.getElementById('name').value;
           age = document.getElementById('age').value;
-          address = document.getElementById('address').value;
+          
           mail = document.getElementById('mail').value;
           password = document.getElementById('password').value;
           confPassword = document.getElementById('confPassword').value;
@@ -62,7 +63,7 @@
           alert('passwords dont match');
         }
 
-        var obj = new person(name, age, address, mail, password, confPassword);
+        var obj = new person(name, age, mail, password, confPassword);
         console.log(obj);
       }
     </script>-->

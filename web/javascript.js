@@ -72,20 +72,15 @@
     var admin = document.getElementById('admin').value;
     var name = document.getElementById('name').value;
     var age = document.getElementById('age').value;
-<<<<<<< HEAD
-
-=======
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
->>>>>>> 52d5a5760ae009e3e667462602875892c10f7dcb
 
-    // console.log(name);
-    // console.log(age);
 
-    $.getJSON('user/'+name+'/'+age, end());
+    console.log(admin, name, age, email, password);
+
+    $.getJSON('/user/:'+admin+'/:'+name+'/:'+age+'/:'+email+'/:'+password+'/', end);
 
 function end(data){
   console.log(data);
 }
-
 }

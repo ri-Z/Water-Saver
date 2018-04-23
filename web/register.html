@@ -19,12 +19,12 @@
     <form id="form" class="form" enctype="multipart/form-data" method="post" action="register.html">
       <label>
          <label for="admin">Admin:</label><br>
-            <input id="admin" type="radio" name="admin" value="yes">Yes <br>
-            <input id="admin" type="radio" name="admin" value="no">No <br>
+            <input id="admin" type="radio" name="admin" value="true">Yes <br>
+            <input id="admin" type="radio" name="admin" value="false">No <br>
           <label for="name">Name:</label>
             <input id="name" type="text" name="name" value="" placeholder="Enter your Name"> <br>
         <label for="age">Age:</label>
-          <input id="age" type="number" name="age" value=""> 
+          <input id="age" type="number" name="age" value="">
        <br>
         <label for="email">Email:</label>
           <input id="email" type="email" name="email" value="" placeholder="Enter your Email"><br>
@@ -32,7 +32,7 @@
             <input id="password" type="password" name="password" value="" placeholder="Enter a Password"><br>
         <label for="confPassword">Confirm Password:</label>
             <input id="confPassword" type="password" name="confPassword" value="" placeholder="Confirm your Password"><br><br>
-        <input id="submit" type="button" value="Submit" onclick="createperson()">
+        <input id="submit" type="button" value="Submit" ><!--onclick="createperson()"-->
       </label>
     </form>
 
@@ -55,7 +55,7 @@
         if (document.getElementById('password').value === document.getElementById('confPassword').value) {
           name = document.getElementById('name').value;
           age = document.getElementById('age').value;
-          
+
           mail = document.getElementById('mail').value;
           password = document.getElementById('password').value;
           confPassword = document.getElementById('confPassword').value;

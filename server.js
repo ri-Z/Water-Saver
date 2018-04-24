@@ -30,20 +30,21 @@ app.get('/CreateDB', function(req, res) {
  });
 
 
- //Getting the Json from a file
- var fs = require('fs');
- var data = fs.readFileSync('usersData.json');
- //raw data
- console.log(data);
- //parsed data
- var usersData = JSON.parse(data);
- console.log(usersData);
-app.get('/all', sendResp);
-function sendResp(req, res){
-	res.send(usersData);
-}
+ // //Getting the Json from a file
+ // var fs = require('fs');
+ // var data = fs.readFileSync('usersData.json');
+ // //raw data
+ // console.log(data);
+ // //parsed data
+ // var usersData = JSON.parse(data);
+ // console.log(usersData);
 
-app.get('user/:name/:admin/:age/:email/:password/', addUser);
+// app.get('/all', sendAll);
+// function sendAll(request, response){
+// 	response.send(usersData);
+// }
+
+app.get('user/:admin/:name/:age/:email/:password/', addUser);
 function addUser(request, response){
   var reqData = request.params;
   var admin = reqData.admin;

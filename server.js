@@ -34,7 +34,7 @@ app.get('/CreateDB', function(req, res) {
  })
  });
 
-app.get('user/:admin/:name/:age/:email/:password/', addUser);
+app.get('/user/:name/:admin/:age/:email/:password/', addUser);
 function addUser(request, response){
   var reqData = request.params;
   var admin = reqData.admin;

@@ -62,6 +62,11 @@ function show(data){
   but.onclick = function send(){
 
     var admin = document.getElementById('admin').value;
+    // if (document.getElementById('admin').checked == 0) {
+    //   var admin = "0";
+    // } else {
+    //   var admin = "1";
+    // }
     var name = document.getElementById('name').value;
     var age = document.getElementById('age').value;
     var email = document.getElementById('email').value;
@@ -74,7 +79,7 @@ function show(data){
     console.log(email);
     console.log(password);
 
-    $.getJSON('/user/:'+admin+'/:'+name+'/:'+age+'/:'+email+'/:'+password+'/', end);
+    $.getJSON('/user/'+name+'/'+admin+'/'+age+'/'+email+'/'+password, end);
 
 function end(data){
   console.log(data);
@@ -84,5 +89,6 @@ function end(data){
 //window.location.replace("feedPage.html");
 
 // similar behavior as clicking on a link
-//window.location.href = "feedPage.html";
+// window.location.href = "feedPage.html";
+// document.getElementById('data').innerHTML = data;
 }

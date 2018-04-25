@@ -24,18 +24,14 @@
 //   console.log(obj);
 // }
 
-// function getData(){
-//
-//   $.getJSON('/all', show);
-//
-// function show(data){
-//
-//   var key = Object.keys(data);
-//
-// }
-// }
-//
-//   getData();
+function getData(){
+  $.getJSON('/all', show);
+
+function show(data){
+  var key = Object.keys(data);
+  }
+}
+  getData();
 
 
 /////////////////////////////////////////////////////////////////////
@@ -60,6 +56,7 @@
       })
 
 /////////////////////////////////////////////////////////////////////
+
   var but = document.getElementById('submit');
 
   but.onclick = function send(){
@@ -77,9 +74,15 @@
     console.log(email);
     console.log(password);
 
-    $.getJSON('user/'+admin+'/'+name+'/'+age+'/'+email+'/'+password, end);
+    $.getJSON('user/'+name+'/'+admin+'/'+age+'/'+email+'/'+password, end);
 
 function end(data){
   console.log(data);
 }
+
+// similar behavior as an HTTP redirect
+//window.location.replace("feedPage.html");
+
+// similar behavior as clicking on a link
+//window.location.href = "feedPage.html";
 }

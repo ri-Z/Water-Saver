@@ -34,10 +34,6 @@ app.get('/CreateDB', function(req, res) {
  })
  });
 
-// app.get('/all', sendAll);
-// function sendAll(request, response){
-// 	response.send(usersData);
-// }
 
 app.get('/user/:name/:admin/:age/:email/:password/', addUser);
 function addUser(request, response){

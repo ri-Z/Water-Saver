@@ -74,7 +74,7 @@ function show(data){
     console.log(email);
     console.log(password);
 
-    $.getJSON('user/'+name+'/'+admin+'/'+age+'/'+email+'/'+password, end);
+    $.getJSON('/user/:'+admin+'/:'+name+'/:'+age+'/:'+email+'/:'+password+'/', end);
 
 function end(data){
   console.log(data);

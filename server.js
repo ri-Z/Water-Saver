@@ -34,8 +34,7 @@ app.get('/CreateDB', function(req, res) {
  })
  });
 
-
-app.get('/user/:name/:admin/:age/:email/:password/', addUser);
+app.get('user/:admin/:name/:age/:email/:password/', addUser);
 function addUser(request, response){
   var reqData = request.params;
   var admin = reqData.admin;
@@ -59,6 +58,7 @@ function addUser(request, response){
   }
 
   response.send(data);
+
 
 	let sql = "INSERT INTO User (Admin, Name, Birth, Email, Password) VALUES ('"+admin+"', '"+name+"', '"+age+"', '"+email+"', '"+password+"')";
 	db.query(sql, function (err, result, fields) {

@@ -32,11 +32,6 @@
 //
 //   var key = Object.keys(data);
 //
-//   var game = key[3];
-//   var year = data[game];
-//   console.log(game);
-//   console.log(year);
-//   document.getElementById('game').innerHTML = game +" "+ year;
 // }
 // }
 //
@@ -76,9 +71,13 @@
     var password = document.getElementById('password').value;
 
 
-    console.log(admin, name, age, email, password);
+    console.log(admin);
+    console.log(name);
+    console.log(age);
+    console.log(email);
+    console.log(password);
 
-    $.getJSON('/user/:'+admin+'/:'+name+'/:'+age+'/:'+email+'/:'+password+'/', end);
+    $.getJSON('user/'+admin+'/'+name+'/'+age+'/'+email+'/'+password, end);
 
 function end(data){
   console.log(data);

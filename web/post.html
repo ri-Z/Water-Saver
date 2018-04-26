@@ -1,0 +1,155 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+	<title>Post</title>
+	<style type="text/css">
+		#hide{
+			visibility: hidden;
+		}
+		.Upload{
+
+			border-color: red;
+			border-radius: 5px;
+			color: white;
+			background-color: black;
+			width: 100px;
+			height: 70px;
+		}
+
+		.Upload:hover{
+
+			border-color: antiquewhite;
+			color: orange;
+			cursor: pointer;
+		}
+
+	</style>
+</head>
+<body>
+<input type="file" id="hide">
+<input type="button" name="Upload" class="Upload" onclick="document.getElementById('hide').click()">
+
+
+
+
+
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  html{
+    background-color: #ccffff;
+  }
+</style>
+ </head>
+ <body>
+  <br /><br />
+  <div class="container" style="width:700px;">
+   <h2 align="center">Upload Image</h2>
+   <br />
+   <label>Select Image</label>
+   <input type="file" name="file" id="file" />
+   <br />
+   <span id="uploaded_image"></span>
+
+Floor
+   <form action="/action_page.php">
+  <select name="Floor">
+  	<option value="Garrage">Garrage</option>
+  	<option value="Student Area">Student Area</option>
+    <option value="First">First</option>
+    <option value="Second">Second</option>
+    <option value="Third">Third</option>
+    <option value="Forth">Forth</option>
+    <option value="Fifth">Fifth</option>
+    <option value="Sixth">Sixth</option>
+    <option value="Seventh">Seventh</option>
+  </select>
+  <br><br>
+
+  Area <br>
+   <form action="/action_page.php">
+  <select name="Area">
+    <option value="Bathroom (male)">Bathroom (male)</option>
+    <option value="Bathroom (Female)">Bathroom (Female)</option>
+    <option value="Classroom">Classroom</option>
+    <option value="Library">Libray</option>
+    <option value="Corridor">Corridor</option>
+    <option value="Staircase">Staircase</option>
+    <option value="Elevator">Elevator</option>
+  </select>
+  <br><br>
+
+  Discription
+  <br>
+    <textarea name="message" rows="10" cols="30">Provide a short discription of the problem.
+    </textarea>
+    <br>
+    Would you like to keep track of this post?
+    <br>
+     <input type="radio" name="track" >Yes
+     <br>
+     <input type="radio" name="track" >No
+     <br>
+
+
+  <input type="submit">
+</form>
+
+
+
+
+
+  </div>
+
+ </body>
+</html>
+
+<script>
+$(document).ready(function(){
+ $(document).on('change', '#file', function(){
+  var name = document.getElementById("file").files[0].name;
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1)
+  {
+   alert("Invalid Image File");
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("file").files[0]);
+  var f = document.getElementById("file").files[0];
+  var fsize = f.size||f.fileSize;
+  if(fsize > 2000000)
+  {
+   alert("Image File Size is very big");
+  }
+  else
+  {
+   form_data.append("file", document.getElementById('file').files[0]);
+   $.ajax({
+    url:"upload.php",
+    method:"POST",
+    data: form_data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    beforeSend:function(){
+     $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
+    },
+    success:function(data)
+    {
+     $('#uploaded_image').html(data);
+    }
+   });
+  }
+ });
+});
+</script>

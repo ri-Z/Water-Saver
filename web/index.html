@@ -12,39 +12,59 @@
 <body>
       <div class="wrapper">
             <header>
-
                   <nav>
                         <div class="menu-icon">
                               <i class="fa fa-bars fa-2x"></i>
                         </div>
 
                         <div class="logo">
-                              <img src="LOGO.png" width="80" height="75">
+                              <img src="img/LOGO2.png" width="60px" height="75px">
                         </div>
 
                         <div class="menu">
                               <ul>
                                     <li><a href="#"><b>LOGIN</b></li>
-                                    <li><a href="#"><b>BROWSE</b></li>
-                                    <li><a href="#"><b>MAKE A POST</b></li>
+                                    <li><a href="register.html"><b>REGISTER</b></li>
+                                    <li><a href="browse.html"><b>BROWSE</b></li>
+                                    <li><a href="post.html"><b>MAKE A POST</b></li>
                                     <li><a href="#"><b>ABOUT</b></li>
                                     <li><a href="#"><b>CONTACT US</b></li>
                               </ul>
                         </div>
                   </nav>
-
+                    <img src="img/connect.jpg" width="" height="">
             </header>
 
             <div class="content">
-                  <section id="one"><p>hfbhlfdvffffffffffffffff</p></section>
-                <p> (site name) is a website used for institutional perposes in an attempt to help raise awarsness in the isntitution</p>
-                <h2>ALSO GO TO REGISTER PAGE SINCE INDEX HAS NOTHING YET</h2>
+                  <section id="one"><p>SUPER TEXT</p></section>
+                <p id="right"> (site name) is a website used for institutional perposes in an attempt to help raise awarsness in the isntitution</p>
+                <h2>ALSO GO TO REGISTER PAGE OR CLICK BROWSE, SINCE INDEX HAS NOTHING YET</h2>
             </div>
       </div>
 
       <footer>
         <p align="right"><a href="register.html"> Register Page Testing</a></p>
       </footer>
+      <script type="text/javascript">
+
+      // Menu-toggle button
+      $(document).ready(function() {
+            $(".menu-icon").on("click", function() {
+                  $("nav ul").toggleClass("showing");
+            });
+      });
+
+      // Scrolling Effect
+      $(window).on("scroll", function() {
+            if($(window).scrollTop()) {
+                  $('nav').addClass('black');
+            }
+
+            else {
+                  $('nav').removeClass('black');
+            }
+      })
+      </script>
       <script type="text/javascript" src="javascript.js"></script>
 </body>
 </html>

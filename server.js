@@ -72,7 +72,7 @@ function addUser(request, response){
 		if (err) {
 			throw err;
 		}
-		console.log(result);
+		console.log("o select all é" + result);
 	});
 }
 
@@ -102,3 +102,11 @@ function searchUser(request, response){
   }
 }
 }
+
+// GET feed
+app.get('/feed', function(req, res) {
+	db.query("SELECT * FROM User;", function (err, result, fields) {
+		if (err) throw err;
+		console.log(result);
+	});
+});

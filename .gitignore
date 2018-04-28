@@ -56,11 +56,3 @@ typings/
 
 # dotenv environment variables file
 .env
-
-<<<<<<< HEAD
-node_modules/npm/man/man1/npm-uninstall.1
-node_modules/npm/man/man1/npm-test.1
-node_modules/.bin/mime
-node_modules/accepts/README.md
-=======
->>>>>>> a1149d9159ec56b48d6f1b1233162431bedc21f1

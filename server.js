@@ -68,13 +68,13 @@ function addUser(request, response){
 		console.log("User Inserted into Database");
 	});
 
-	db.query("SELECT * FROM User", function (err, result, fields) {
-		if (err) {
-			throw err;
-		}
-		console.log("o select all é" + result);
-	});
-}
+// 	db.query("SELECT * FROM User", function (err, result, fields) {
+// 		if (err) {
+// 			throw err;
+// 		}
+// 		console.log("o select all é" + result);
+// 	});
+// }
 
 app.get('/all', sendAll);
 function sendAll(request, response){

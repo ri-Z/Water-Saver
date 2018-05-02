@@ -6,9 +6,16 @@ console.log(users);
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 
 app.listen(3000, () => console.log('App running on port 3000!'));
 app.use(express.static('web'));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 var db = mysql.createConnection({
   host: "localhost",
@@ -68,13 +75,13 @@ function addUser(request, response){
 		console.log("User Inserted into Database");
 	});
 
-// 	db.query("SELECT * FROM User", function (err, result, fields) {
-// 		if (err) {
-// 			throw err;
-// 		}
-// 		console.log("o select all é" + result);
-// 	});
-// }
+	// db.query("SELECT * FROM User", function (err, result, fields) {
+	// 	if (err) {
+	// 		throw err;
+	// 	}
+	// 	console.log("o select all é" + result);
+	// });
+}
 
 app.get('/all', sendAll);
 function sendAll(request, response){
@@ -104,7 +111,7 @@ function searchUser(request, response){
 }
 
 // GET feed
-app.get('/feed', function(req, res) {
+app.get('/feed', function(req, res){
 	db.query("SELECT * FROM User;", function (err, result, fields) {
 		if (err) throw err;
 		console.log(result);

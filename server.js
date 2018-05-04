@@ -6,25 +6,16 @@ console.log(users);
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
-<<<<<<< HEAD
-const bodyParser = require ('body-parser');
-=======
 const bodyParser = require('body-parser');
->>>>>>> 14e3bdb3790bf8bc920870a471365b648c035879
 
 app.listen(3000, () => console.log('App running on port 3000!'));
 app.use(express.static('web'));
 
-<<<<<<< HEAD
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json());
-=======
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
->>>>>>> 14e3bdb3790bf8bc920870a471365b648c035879
 
 var db = mysql.createConnection({
   host: "localhost",
@@ -83,19 +74,6 @@ function addUser(request, response){
 		console.log("User Inserted into Database");
 	});
 
-<<<<<<< HEAD
-// 	db.query("SELECT * FROM User", function (err, result, fields) {
-// 		if (err) {
-// 			throw err;
-// 		}
-// 		console.log("o select all é" + result);
-// 	});
- }
-  app.get('/all', sendAll);
-  function sendAll(request, response){
-    response.send(users);
-  }
-=======
 	// db.query("SELECT * FROM User", function (err, result, fields) {
 	// 	if (err) {
 	// 		throw err;
@@ -108,7 +86,6 @@ app.get('/all', sendAll);
 function sendAll(request, response){
   response.send(users);
 }
->>>>>>> 14e3bdb3790bf8bc920870a471365b648c035879
 
 //"search bar like function STILL NOT IMPLEMENTED"
 app.get('/search/:name/', searchUser);
@@ -133,25 +110,10 @@ function searchUser(request, response){
 }
 }
 
-<<<<<<< HEAD
-app.get('/feed', function (req, res){
-db.query("SELECT * FROM User;", function(err, result, fields){
-
-  if (err) throw err;
-  console.log(result);
-});
-=======
 // GET feed
 app.get('/feed', function(req, res){
 	db.query("SELECT * FROM User;", function (err, result, fields) {
 		if (err) throw err;
 		console.log(result);
 	});
->>>>>>> 14e3bdb3790bf8bc920870a471365b648c035879
 });
-
-
-
-
-
-

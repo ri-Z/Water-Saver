@@ -7,8 +7,12 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+<<<<<<< HEAD
 const multer  = require('multer')
 
+=======
+const multer = require('multer');
+>>>>>>> 47c7e2cf6b66fdf5aa32fd30ecb559e941ae730e
 
 app.listen(3000, () => console.log('App running on port 3000!'));
 app.use(express.static('web'));
@@ -30,7 +34,7 @@ app.post('/photos/upload', upload.array('photos', 12), function (req, res, next)
 var db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Prune098",
+  password: "root",
   port: "3306",
 	database: "WaterSaver"
 });

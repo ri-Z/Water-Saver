@@ -7,12 +7,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-<<<<<<< HEAD
-const multer  = require('multer')
-
-=======
 const multer = require('multer');
->>>>>>> 47c7e2cf6b66fdf5aa32fd30ecb559e941ae730e
 
 app.listen(3000, () => console.log('App running on port 3000!'));
 app.use(express.static('web'));

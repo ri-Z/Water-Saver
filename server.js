@@ -7,6 +7,8 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const multer  = require('multer')
+
 
 app.listen(3000, () => console.log('App running on port 3000!'));
 app.use(express.static('web'));
@@ -16,6 +18,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+//creating folder to store the uploaded files
+var upload = multer({ dest: 'uploads/' })
+
+app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+  // req.files is array of `photos` files
+  // req.body will contain the text fields, if there were any
+});
+
 
 var db = mysql.createConnection({
   host: "localhost",
@@ -91,23 +101,10 @@ function sendAll(request, response){
 app.get('/search/:name/', searchUser);
 
 function searchUser(request, response){
-  var name = request.params.name;
-  var reply;
-  if (users[name]){
-    reply = {
-    status: "found",
-    name: name,
-    admin: users[name],
-    age: users[name],
-    email: users[name],
-    password: users[name]
-  }
-} else {
-  reply = {
-    status: "not found",
-    name: name
-  }
-}
+  var name = request.params;
+  let sql = "SELECT ";
+
+
 }
 
 // GET feed

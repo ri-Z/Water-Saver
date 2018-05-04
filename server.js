@@ -6,14 +6,18 @@ console.log(users);
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const bodyParser = require ('body-parser');
 
 app.listen(3000, () => console.log('App running on port 3000!'));
 app.use(express.static('web'));
 
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json());
+
 var db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "Prune098",
   port: "3306",
 	database: "WaterSaver"
 });
@@ -57,9 +61,8 @@ function addUser(request, response){
     console.log("ALL SET");
   }
 
+
   response.send(data);
-
-
 	let sql = "INSERT INTO User (Admin, Name, Birth, Email, Password) VALUES ('"+admin+"', '"+name+"', '"+age+"', '"+email+"', '"+password+"')";
 	db.query(sql, function (err, result, fields) {
 		if (err) {
@@ -74,15 +77,15 @@ function addUser(request, response){
 // 		}
 // 		console.log("o select all é" + result);
 // 	});
-// }
-
-app.get('/all', sendAll);
-function sendAll(request, response){
-  response.send(users);
-}
+ }
+  app.get('/all', sendAll);
+  function sendAll(request, response){
+    response.send(users);
+  }
 
 //"search bar like function STILL NOT IMPLEMENTED"
 app.get('/search/:name/', searchUser);
+
 function searchUser(request, response){
   var name = request.params.name;
   var reply;
@@ -103,10 +106,16 @@ function searchUser(request, response){
 }
 }
 
-// GET feed
-app.get('/feed', function(req, res) {
-	db.query("SELECT * FROM User;", function (err, result, fields) {
-		if (err) throw err;
-		console.log(result);
-	});
+app.get('/feed', function (req, res){
+db.query("SELECT * FROM User;", function(err, result, fields){
+
+  if (err) throw err;
+  console.log(result);
 });
+});
+
+
+
+
+
+

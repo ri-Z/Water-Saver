@@ -27,14 +27,36 @@ input[type=text], input[type=password], input[type=text],input[type=email], .des
     border: 1px solid #555
 }
 
-.floorOptions
+#room
 {
-    width: 3%;
+    width: 10%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #555
+    border: 1px solid #555;
+
 }
+
+#Room1{
+	float:left;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	
+}
+
+#Floor1{
+	float:left;
+	margin: 0 0 0 43%;
+	padding: 0px 0px;
+	
+}
+
+.boht{
+	background-color: #fff;
+}
+
+
+
     </style>
 	</head>
 	<body>
@@ -58,8 +80,11 @@ input[type=text], input[type=password], input[type=text],input[type=email], .des
     <form id="form" class="form" enctype="multipart/form-data" method="post" action="/uploadimage">
       <label>
          <label for="title"><p>Title:</p></label>
-            <input id="title" type="text" name="title" value="" placeholder="Enter your a Title"> 
-          <label for="floor"><p>Floor:</p></label>
+            <input id="title" type="text" name="title" value="" placeholder="Enter your a Title">
+            <section id="boht">
+            <div id="Floor1"> 
+            	<br>
+           <label for="floor"><p>Floor:</p></label>
 						<select class="floorOptions" name="floor">
 							<option value="null"></option>
 	          	<option value="-3">-3</option>
@@ -73,9 +98,19 @@ input[type=text], input[type=password], input[type=text],input[type=email], .des
 							<option value="5">5</option>
 							<option value="6">6</option>
 							<option value="7">7</option>
-	          </select>
+	            </select> 
+	        </div>
+	        <div id="Room1">
+	        	<br>
         <label for="room"><p>Room:</p></label>
+
           <input id="room" type="text" name="room" value="" placeholder="Enter a Room">
+          </div>
+      </div>
+      </section>
+      <br><br><br><br><br><br>
+
+      
 						<label for="description"><p>Description:</p></label>
 							<textarea class="description" type="text" name="description"></textarea>
 						<label for="Media"><p>Upload a Picture</p></label>

@@ -6,6 +6,10 @@ console.log(users);
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 //const ejs = require('ejs');
 const multer = require('multer');
@@ -43,6 +47,38 @@ app.use(express.static('web'));
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+
+//Authentication
+app.use(cookieParser());
+app.use(session({
+  secret: 'jibirish',
+  resave: false,
+  saveUninitialized: false,
+  //cookie: { secure: true }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//writing user data in the session
+passport.serializeUser(function(user_id, done) {
+  done(null, user_id);
+});
+//retrieving user datafrom the session
+passport.deserializeUser(function(user_id, done) {
+  done(null, user_id);
+});
+
+//express mysql session
+const options = {
+  host: "localhost",
+  user: "root",
+  password: "root",
+  port: "3306",
+  database: "WaterSaver"
+};
+
+var sessionStore = new MySQLStore(options);
+
 
 
 const db = mysql.createConnection({
@@ -124,10 +160,31 @@ app.post('/createUser', (request, response)=>{
       if(err)throw err;
       console.log(result);
       console.log("User Inserted into Database WaterSaver");
-      response.send(result);
+      //response.send(result);
+
+      let sql = "SELECT LAST_INSERT_ID() as user_id";
+      db.query(sql,(err,result)=>{
+        if(err)throw err;
+
+        var user_id = result[0];
+        console.log(result[0]);
+
+          //LOGIN USER-create a session
+          request.login(user_id,function(err){
+            response.redirect('/index');
+        });
+      });
     });
   });
 });
+
+app.get('/index',(request,response)=>{
+  //  deserializeUser ... if so - creates a session and returns a session key
+  console.log(request.user);
+  console.log(request.isAuthenticated());
+  response.redirect('/');
+});
+
 
 //putting photos in local storage
 const storage = multer.diskStorage({

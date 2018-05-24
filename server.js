@@ -84,7 +84,7 @@ var sessionStore = new MySQLStore(options);
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Prune098",
+  password: "root",
   port: "3306",
 	database: "WaterSaver"
   //socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
@@ -178,12 +178,62 @@ app.post('/createUser', (request, response)=>{
   });
 });
 
-app.get('/index',(request,response)=>{
-  //  deserializeUser ... if so - creates a session and returns a session key
+function authenticationMiddleware() {
+  return (request, response, next) => {
+    console.log(`request.session.passport.user: ${JSON.stringify(request.session.passport)}`);
+
+      if (request.isAuthenticated()) return next();
+      response.redirect('/login');
+  }
+}
+app.get('/index', authenticationMiddleware(), (request,response)=>{
+  //deserializeUser ... if so - creates a session and returns a session key
   console.log(request.user);
   console.log(request.isAuthenticated());
   response.redirect('/');
 });
+app.get('/post', authenticationMiddleware(), (request,response)=>{
+  //deserializeUser ... if so - creates a session and returns a session key
+  console.log(request.user);
+  console.log(request.isAuthenticated());
+  response.redirect('/createPost.html');
+});
+
+app.get('/login',(request,response)=>{
+  response.redirect('/login.html');
+});
+//Local - for local database strategy
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/index',
+  failureRedirect: '/login'
+}));
+
+//verify if the user exists and the password is correct
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    console.log(username);
+    console.log(password);
+    db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], (err,result)=>{
+      if(err)throw err;
+          console.log(result[0]);
+      //if nothing is returned
+      if(result.length===0){
+        console.log("Empty");
+        done(null,false);
+      }
+      const hash = result[0].password.toString();
+      var response = bcrypt.compareSync(password, hash);
+            if(response===true){
+              return done(null, {user_id:result[0].idUser});
+              response.redirect('/index');
+            }else{
+              done(null,false);
+            }
+    });
+      return done(null, false);
+  }
+));
+
 
 
 //putting photos in local storage

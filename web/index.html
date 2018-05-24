@@ -1,70 +1,119 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-<head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title> Water Save </title>
-      <link rel="stylesheet" type="text/css" href="style.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <script type="text/javascript" src="jQuery.js"></script>
-</head>
-<body>
-      <div class="wrapper">
-            <header>
-                  <nav>
-                        <div class="menu-icon">
-                              <i class="fa fa-bars fa-2x"></i>
-                        </div>
+	<head>
+		<title>IADE REPORTER</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<script type="text/javascript" src="jQuery.js"></script>
+	</head>
+	<body>
 
-                        <div class="logo">
-                              <img src="img/LOGO2.png" width="60px" height="75px">
-                        </div>
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>REPORTER</strong> for IADE</a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+						<a href="About.html">About</a>
+						<a href="Profile.html">Profile</a>
+						<a href="SignUp.html">SignUp</a>
+						<a href="LogIn.html">LogIn</a>
+						<a href="createPost.html">MakePost</a>
+					</nav>
 
-                        <div class="menu">
-                              <ul>
-                                    <li><a href="#"><b>LOGIN</b></li>
-                                    <li><a href="register.html"><b>REGISTER</b></li>
-                                    <li><a href="browse.html"><b>BROWSE</b></li>
-                                    <li><a href="post.html"><b>MAKE A POST</b></li>
-                                    <li><a href="#"><b>ABOUT</b></li>
-                                    <li><a href="#"><b>CONTACT US</b></li>
-                              </ul>
-                        </div>
-                  </nav>
-                    <img src="img/connect.jpg" width="" height="">
-            </header>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
 
-            <div class="content">
-                  <section id="one"><p>SUPER TEXT</p></section>
-                <p id="right"> (site name) is a website used for institutional perposes in an attempt to help raise awarsness in the isntitution</p>
-                <h2>ALSO GO TO REGISTER PAGE OR CLICK BROWSE, SINCE INDEX HAS NOTHING YET</h2>
-            </div>
-      </div>
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1></h1>
+					</header>
 
-      <footer>
-        <p align="right"><a href="register.html"> Register Page Testing</a></p>
-      </footer>
-      <script type="text/javascript">
+					<div class="flex ">
+						<div>
+							<span class="icon fa-car"></span>
+							<h3>SEE IT</h3>
+							<p>If you see a problem</p>
+						</div>
 
-      // Menu-toggle button
-      $(document).ready(function() {
-            $(".menu-icon").on("click", function() {
-                  $("nav ul").toggleClass("showing");
-            });
-      });
+						<div>
+							<span class="icon fa-camera"></span>
+							<h3>SNAP IT</h3>
+							<p>Take a picture</p>
+						</div>
 
-      // Scrolling Effect
-      $(window).on("scroll", function() {
-            if($(window).scrollTop()) {
-                  $('nav').addClass('black');
-            }
+						<div>
+							<span class="icon fa-bug"></span>
+							<h3>FIX IT</h3>
+							<p>Post it to help us fix it</p>
+						</div>
+					</div>
 
-            else {
-                  $('nav').removeClass('black');
-            }
-      })
-      </script>
-      <script type="text/javascript" src="javascript.js"></script>
-</body>
+					<footer>
+						<a href="About.html" class="button">LEARN MORE</a>
+					</footer>
+				</div>
+			</section>
+
+
+		<!-- Three -->
+			<section id="three" class="wrapper align-center">
+				<div class="inner">
+					<div class="flex flex-2">
+						<article>
+							<div class="image round">
+								<img src="stef.jpg"  width="150" height="150px">
+							</div>
+							<header>
+								<h1>Stefano Claro<br /></h1>
+							</header>
+							<p>"This website is a great way to finally have a voice in my instituion. <br> It has reinvented the way students can have a say in what is happening around them."</p>
+							<br> <p><b>Rating:</b>10/10</p>
+						</article>
+						<article>
+							<div class="image round">
+								<img src="jorge.png"  width="150" height="150px">
+							</div>
+							<header>
+								<h1>Jorge Sousa<br /></h1>
+							</header>
+							<p>"Este site está incrível! "<br /> "Nunca vi nada assim, foi muito bom saber que posso ajudar a minha faculdade em crescer"</p> <br><p><b>Rating:</b>10/10</p>
+						</article>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h3>Find Us</h3>
+					<div id="map" style="width="900" height="450" ;background:yellow">
+						<script>
+							function myMap() {
+							    var mapOptions = {
+							        center: new google.maps.LatLng(51.5, -0.12),
+							        zoom: 10,
+							        mapTypeId: google.maps.MapTypeId.HYBRID
+							    }
+							var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+							}
+						</script>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.459680515484!2d-9.15470968465522!3d38.70725397960036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1934838cfa1033%3A0x36de966c91888246!2sIADE+-+Creative+University!5e0!3m2!1sen!2spt!4v1526657171932" width="900" height="450" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+					<div class="copyright">
+						&copy; Reporter for <a href="https://www.iade.europeia.pt/">IADE</a>.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/main.js"></script>
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
+	</body>
 </html>

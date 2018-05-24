@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>IADE REPORTER</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/main.css">
+		<script type="text/javascript" src="jQuery.js"></script>
+	</head>
+	<body>
+
+    <!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>REPORTER</strong> for IADE</a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+						<a href="About.html">About</a>
+						<a href="Profile.html">Profile</a>
+						<a href="SignUp.html">SignUp</a>
+						<a href="LogIn.html">LogIn</a>
+						<a href="createPost.html">MakePost</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+
+
+    <form id="form" class="form" enctype="multipart/form-data" method="post" action="/uploadimage">
+      <label>
+         <label for="title">Title:</label><br>
+            <input id="title" type="text" name="title" value="" placeholder="Enter your a Title"> <br>
+          <label for="floor">Floor:</label>
+						<select class="floorOptions" name="floor">
+	          	<option value="-3">-3</option>
+							<option value="-2">-2</option>
+							<option value="-1">-1</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+	          </select><br>
+        <label for="room">Room:</label>
+          <input id="room" type="text" name="room" value="" placeholder="Enter a Room"><br>
+						<label for="description">Description:</label><br>
+							<textarea id="description" type="text" name="description"></textarea><br>
+						<label for="Media">Upload a Picture</label><br>
+							<input id="file" type="file" name="file"><br><br>
+							<input id="submitPost" type="submit" name="submit" value="Post Picture" onclick="showPost();">
+      </label>
+    </form>
+
+    <script type="text/javascript" src="javascript.js"></script>
+  </body>
+</html>

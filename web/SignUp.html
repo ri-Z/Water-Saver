@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>IADE REPORTER</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/main.css">
+		<script type="text/javascript" src="jQuery.js"></script>
+	</head>
+	<body>
+
+    <!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo"><strong>REPORTER</strong> for IADE</a>
+					<nav id="nav">
+						<a href="index.html">Home</a>
+						<a href="About.html">About</a>
+						<a href="Profile.html">Profile</a>
+						<a href="SignUp.html">SignUp</a>
+						<a href="LogIn.html">LogIn</a>
+						<a href="createPost.html">MakePost</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+
+<section id="main" class="wrapper">
+
+
+    <form method="post" id="form" class="form" action="/createUser">
+      <label>
+         <label for="admin">Admin:</label><br>
+            <input id="admin1" type="radio" name="admin" value="1" autofocus> Yes <br>
+            <input id="admin0" type="radio" name="admin" value="0"> No <br><br>
+        <!--<select>
+              <option id="admin" value="0">No</option>
+              <option id="admin" value="1">Yes</option>
+            </select><br><br>-->
+          <label for="name">Name:</label>
+            <input id="name" type="text" name="name" placeholder="Enter your Name"> <br>
+        <label for="age">Age:</label>
+          <input id="age" type="number" name="age">
+       <br>
+        <label for="email">Email:</label>
+          <input id="email" type="email" name="email" placeholder="Enter your Email"><br>
+        <label for="passwordLabel">Password:</label>
+            <input id="password" type="password" name="password" placeholder="Enter a Password"><br>
+        <label for="confPassword">Confirm Password:</label>
+            <input id="confPassword" type="password" name="confPassword" placeholder="Confirm your Password"><br><br>
+        <input id="submit" type="submit" value="Register" onclick="PwValidate(); ">
+      </label>
+    </form>
+		<p id="AlertPwDontMatch" name="AlertPwDontMatch"></p>
+</section>
+
+    <!--<script type="text/javascript" src="javascript.js">
+
+      function person(name, age, mail, password, confPassword) {
+        this.name = name;
+        this.age = age;
+        this.mail = mail;
+        this.password = password;
+        this.confPassword = confPassword;
+      }
+
+      function createperson() {
+
+        if (document.getElementById('password').value === document.getElementById('confPassword').value) {
+          name = document.getElementById('name').value;
+          age = document.getElementById('age').value;
+
+          mail = document.getElementById('mail').value;
+          password = document.getElementById('password').value;
+          confPassword = document.getElementById('confPassword').value;
+        } else {
+          alert('passwords dont match');
+        }
+
+        var obj = new person(name, age, mail, password, confPassword);
+        console.log(obj);
+      }
+    </script>-->
+    <script type="text/javascript" src="javascript.js"></script>
+  </body>
+</html>

@@ -6,6 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/css/main.css">
 		<script type="text/javascript" src="jQuery.js"></script>
+    <style type="text/css">
+      
+input[type=text],
+ {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #555
+}
+    </style>
 	</head>
 	<body>
 
@@ -27,32 +38,33 @@
 
 
 
-
+<section id="banner4">
     <form method="post" id="form" class="form" action="/createUser">
       <label>
-         <label for="admin">Admin:</label><br>
-            <input id="admin1" type="radio" name="admin" value="1" autofocus> Yes <br>
-            <input id="admin0" type="radio" name="admin" value="0"> No <br><br>
+         <label for="admin"><p>Student or Visitor:</label><br>
+            <input id="admin1" type="radio" name="admin" value="1" autofocus> Student<br>
+            <input id="admin0" type="radio" name="admin" value="0"> Visitor<br><br>
         <!--<select>
               <option id="admin" value="0">No</option>
               <option id="admin" value="1">Yes</option>
             </select><br><br>-->
-          <label for="name">Name:</label>
+          <label for="name"><p>Name:</label><br>
             <input id="name" type="text" name="name" placeholder="Enter your Name"> <br>
-        <label for="age">Age:</label>
-          <input id="age" type="number" name="age">
+        <label for="age"><p>Age:</label>
+          <br>
+          <input id="age" type="text" name="age">
        <br>
-        <label for="email">Email:</label>
+        <label for="email"><p>Email:</label><br>
           <input id="email" type="email" name="email" placeholder="Enter your Email"><br>
-        <label for="passwordLabel">Password:</label>
+        <label for="passwordLabel"><p>Password:</label><br>
             <input id="password" type="password" name="password" placeholder="Enter a Password"><br>
-        <label for="confPassword">Confirm Password:</label>
+        <label for="confPassword"><p>Confirm Password:</label><br>
             <input id="confPassword" type="password" name="confPassword" placeholder="Confirm your Password"><br><br>
         <input id="submit" type="submit" value="Register" onclick="PwValidate(); ">
       </label>
     </form>
 		<p id="AlertPwDontMatch" name="AlertPwDontMatch"></p>
-
+</section>
 
     <!--<script type="text/javascript" src="javascript.js">
 

@@ -680,19 +680,7 @@
 		padding: 0.75em 1em;
 	}
 
-	input[type="checkbox"],
-	input[type="radio"] {
-		-moz-appearance: none;
-		-webkit-appearance: radio;
-		-ms-appearance: none;
-		appearance: none;
-		display: block;
-		float: left;
-		margin-right: -2em;
-		opacity: 0;
-		width: 1em;
-		z-index: -1;
-	}
+	
 
 		input[type="checkbox"] + label,
 		input[type="radio"] + label {
@@ -1316,7 +1304,7 @@
 			button,
 			.button {
 				padding: 0;
-				width: 100%;
+				width: 50%;
 			}
 
 		}
@@ -1875,10 +1863,147 @@
 
 
 
+#banner4 {
+		padding: 8em 0 9em 0;
+		background-image: url(/grey2.jpg);
+		background-size: cover;
+		background-position: bottom;
+		background-attachment: fixed;  /*the part that controls the main index picture of
+		background-repeat: no-repeat;    iade in the background*/
+		text-align: center;
+		position: relative;
+	}
 
 
+		#banner4 .inner {
+			border-top: 2px solid rgba(255, 255, 255, 0.2);
+			position: relative;
+			z-index: 10005;
+			padding-top: 8em;
+		}
+
+		/*#banner h1 {
+			font-size: 3.5em;   /*welcome to iade reporter maain index title */
+			/*font-weight: 400;
+			color: #fff;
+			line-height: 1em;
+			margin: 0 0 1em 0;
+			padding: 0;
+		}*/
+
+		#banner4 h3 {
+			font-weight: 400;  /*see it  post it- fix it(size and color*/
+			color: #fff;
+			margin: 0;
+			font-size: 1.5em;
+		}
+
+		#banner4 .icon {
+			color: #6cc091;  /*this controlls the size of the symbols in the index*/
+			font-size: 4em;
+		}
+
+		#banner4 p {
+			font-size: 1em;
+			color: rgb(255, 255, 255);   /*this controls the text under the three index symbols*/
+			margin-bottom: 1.75em;
+		}
+
+		#banner4 .flex {                  /*each symbol becoms centered*/
+			-ms-flex-pack: center;
+			-moz-justify-content: center;
+			-webkit-justify-content: center;
+			-ms-justify-content: center;
+			justify-content: center;
+			text-align: center;
+			margin: 0 auto 4em auto;
+		}
+
+			#banner4 .flex div {
+				border-right: 2px solid rgba(255, 255, 255, 0.2);
+				padding: 0 6em;  /*this controls how much space between the three symbols of the index*/
+			}
+
+				#banner4 .flex div:last-child {
+					border: none;
+					padding-right: 0;
+				}
+
+				#banner4 .flex div:first-child {  /*this aligns the index sylmbls of ( see it,post it, fix it )*/
+					padding-left: 0;
+				}
 
 
+#banner5 {
+		padding: 8em 0 9em 0;
+		background-image: url(/grey3.jpg);
+		background-size: cover;
+		background-position: bottom;
+		background-attachment: fixed;  /*the part that controls the main index picture of
+		background-repeat: no-repeat;    iade in the background*/
+		text-align: center;
+		position: relative;
+	}
+
+		
+
+		#banner5 .inner {
+			border-top: 2px solid rgba(255, 255, 255, 0.2);
+			position: relative;
+			z-index: 10005;
+			padding-top: 8em;
+		}
+
+		/*#banner h1 {
+			font-size: 3.5em;   /*welcome to iade reporter maain index title */
+			/*font-weight: 400;
+			color: #fff;
+			line-height: 1em;
+			margin: 0 0 1em 0;
+			padding: 0;
+		}*/
+
+		#banner5 h3 {
+			font-weight: 400;  /*see it  post it- fix it(size and color*/
+			color: #fff;
+			margin: 0;
+			font-size: 1.5em;
+		}
+
+		#banner5 .icon {
+			color: #6cc091;  /*this controlls the size of the symbols in the index*/
+			font-size: 4em;
+		}
+
+		#banner5 p {
+			font-size: 1em;
+			color: rgb(255, 255, 255);   /*this controls the text under the three index symbols*/
+			margin-bottom: 1.75em;
+		}
+
+		#banner5 .flex {                  /*each symbol becoms centered*/
+			-ms-flex-pack: center;
+			-moz-justify-content: center;
+			-webkit-justify-content: center;
+			-ms-justify-content: center;
+			justify-content: center;
+			text-align: center;
+			margin: 0 auto 4em auto;
+		}
+
+			#banner5 .flex div {
+				border-right: 2px solid rgba(255, 255, 255, 0.2);
+				padding: 0 6em;  /*this controls how much space between the three symbols of the index*/
+			}
+
+				#banner5 .flex div:last-child {
+					border: none;
+					padding-right: 0;
+				}
+
+				#banner5 .flex div:first-child {  /*this aligns the index sylmbls of ( see it,post it, fix it )*/
+					padding-left: 0;
+				}
 
 
 

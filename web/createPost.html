@@ -6,6 +6,36 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/css/main.css">
 		<script type="text/javascript" src="jQuery.js"></script>
+		   <style type="text/css">
+      
+input[type=text], input[type=password], input[type=text],input[type=email], .description
+
+ {
+    width: 50%;
+    padding: 5px 5px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #555
+}
+
+.floorOptions
+{
+    width: 3%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #555
+}
+
+.floorOptions
+{
+    width: 3%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #555
+}
+    </style>
 	</head>
 	<body>
 
@@ -27,8 +57,8 @@
 <section id="banner3" class="wrapper">
     <form id="form" class="form" enctype="multipart/form-data" method="post" action="/uploadimage">
       <label>
-         <label for="title"><p>Title:</p></label><br>
-            <input id="title" type="text" name="title" value="" placeholder="Enter your a Title"> <br>
+         <label for="title"><p>Title:</p></label>
+            <input id="title" type="text" name="title" value="" placeholder="Enter your a Title"> 
           <label for="floor"><p>Floor:</p></label>
 						<select class="floorOptions" name="floor">
 							<option value="null"></option>
@@ -43,13 +73,13 @@
 							<option value="5">5</option>
 							<option value="6">6</option>
 							<option value="7">7</option>
-	          </select><br>
+	          </select>
         <label for="room"><p>Room:</p></label>
-          <input id="room" type="text" name="room" value="" placeholder="Enter a Room"><br>
-						<label for="description"><p>Description:</p></label><br>
-							<textarea id="description" type="text" name="description"></textarea><br>
-						<label for="Media"><p>Upload a Picture</p></label><br>
-							<input id="file" type="file" name="file"><br><br>
+          <input id="room" type="text" name="room" value="" placeholder="Enter a Room">
+						<label for="description"><p>Description:</p></label>
+							<textarea class="description" type="text" name="description"></textarea>
+						<label for="Media"><p>Upload a Picture</p></label>
+							<input id="file" type="file" name="file">
 							<input id="submitPost" type="submit" name="submit" value="Post Picture" onclick="showPost();">
       </label>
     </form>

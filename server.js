@@ -143,9 +143,9 @@ app.post('/uploadimage',multer({
     storage: storage,
     fileFilter: function(req, file, callback) {
         var ext = path.extname(file.originalname)
-        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg')
+        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.mp4' && ext !== '.mov' && ext !== '.m4v' && ext !== '.avi' && ext !== '.flv')
                     {
-            return callback('Only images are allowed', null)
+            return callback('Only images and videos are allowed', null)
         }
         callback(null, true)
     }
@@ -160,8 +160,17 @@ app.post('/uploadimage',multer({
       req.file.path
     ];
 
+  // var data2 = [
+  //   rows.insertId,
+  //   req.file.path
+  // ];
+
     var query = db.query("INSERT INTO Post(Title, Description, Floor, Room, Media) VALUES (?, ?, ?, ?, ?);" , data, function(err, rows) {
       if (err) throw err;
+      // console.log(rows.insertId);
+      // var query2 = db.query("INSERT INTO Media(idPostFK, Media) VALUES (?, ?, ?);", data2, function(err, rows) {
+      //   if (err) throw err;
+      // });
       res.redirect('/Profile.html');
     });
 });

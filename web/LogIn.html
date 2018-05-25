@@ -60,7 +60,8 @@ button:hover {
           <nav id="nav">
             <a href="/">Home</a>
             <a href="About.html">About</a>
-<a href="Profile.html">Feed</a>            <a href="SignUp.html">SignUp</a>
+            <a href="Profile.html">Feed</a>
+            <a href="SignUp.html">SignUp</a>
             <a href="/login">LogIn</a>
             <a href="/post">MakePost</a>
           </nav>
@@ -77,17 +78,19 @@ button:hover {
 
           <div class="container">
             <center>
+              <form id="form" class="form" action="/login" method="post">
               <label for="uname"><p>Username</b></label><br>
               <input type="text" placeholder="Enter Username" name="username" required>
               <br>
               <label for="psw"><p>Password</b></label><br>
               <input type="password" placeholder="Enter Password" name="password" required>
               <br>
-              <a href="/">
+              <!-- <a href="/"> -->
               <button type="submit">Login</button>
               <br>
               <a href="/">
             <button type="submit" class="cancelbtn">Back</button>
+            </form>
           </div>
               </a>
             </center>

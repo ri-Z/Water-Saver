@@ -72,7 +72,7 @@ passport.deserializeUser(function(user_id, done) {
 const options = {
   host: "localhost",
   user: "root",
-  password: "Prune098",
+  password: "root",
   port: "3306",
   database: "WaterSaver"
 };
@@ -84,7 +84,7 @@ var sessionStore = new MySQLStore(options);
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Prune098",
+  password: "root",
   port: "3306",
 	database: "WaterSaver"
   //socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
@@ -208,6 +208,9 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/login'
 }));
 //POR ISTO A DAR
+app.get('/register',(request,response)=>{
+  response.redirect('/SignUp.html');
+});
 app.post('/register', passport.authenticate('local', {
   successRedirect: '/index',
   failureRedirect: '/login'
@@ -218,7 +221,8 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
     console.log(username);
     console.log(password);
-    db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], (err,result)=>{
+    // db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], (err,result)=>{
+      db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], (err,result)=>{
       if(err)throw err;
           console.log(result[0]);
       //if nothing is returned
@@ -226,7 +230,7 @@ passport.use(new LocalStrategy(
         console.log("Empty");
         done(null,false);
       }
-      const hash = result[0].password.toString();
+      const hash = result[0].Password.toString();
       var response = bcrypt.compareSync(password, hash);
             if(response===true){
               return done(null, {user_id:result[0].idUser});
@@ -235,7 +239,8 @@ passport.use(new LocalStrategy(
               done(null,false);
             }
     });
-      return done(null, false);
+    //por string a false
+      return done(null, "falselel");
   }
 ));
 

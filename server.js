@@ -72,7 +72,7 @@ passport.deserializeUser(function(user_id, done) {
 const options = {
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "Prune098",
   port: "3306",
   database: "WaterSaver"
 };
@@ -84,7 +84,7 @@ var sessionStore = new MySQLStore(options);
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "Prune098",
   port: "3306",
 	database: "WaterSaver"
   //socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
@@ -255,7 +255,7 @@ app.post('/uploadimage',multer({
     storage: storage,
     fileFilter: function(req, file, callback) {
         var ext = path.extname(file.originalname)
-        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.mp4' && ext !== '.mov' && ext !== '.m4v' && ext !== '.avi' && ext !== '.flv')
+        if (ext !== '.JPEG' && ext !== '.PNG' && ext !== '.JPG' && ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.mp4' && ext !== '.mov' && ext !== '.m4v' && ext !== '.avi' && ext !== '.flv')
                     {
             return callback('Only images and videos are allowed', null)
         }

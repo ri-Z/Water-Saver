@@ -207,6 +207,11 @@ app.post('/login', passport.authenticate('local', {
   successRedirect: '/index',
   failureRedirect: '/login'
 }));
+//POR ISTO A DAR
+app.post('/register', passport.authenticate('local', {
+  successRedirect: '/index',
+  failureRedirect: '/login'
+}));
 
 //verify if the user exists and the password is correct
 passport.use(new LocalStrategy(

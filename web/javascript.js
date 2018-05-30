@@ -58,7 +58,7 @@ function showPost() {
       console.log(data);
 
       title.innerHTML = data[i].Title;
-      var stringImg = data[i].Media.split('web\\').pop();
+      var stringImg = data[i].Media.split('web/').pop();
 
       // title.setAttribute('position', 'absolute');
       title.setAttribute('top', '5px');

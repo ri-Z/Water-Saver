@@ -207,6 +207,11 @@ app.post('/login', passport.authenticate('local', {
   successRedirect: '/index',
   failureRedirect: '/login'
 }));
+app.get('/logout',(request,response)=>{
+  request.logout();
+  request.session.destroy();
+  response.redirect('/index');
+});
 //POR ISTO A DAR
 app.get('/register',(request,response)=>{
   response.redirect('/SignUp.html');

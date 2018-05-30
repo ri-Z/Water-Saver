@@ -72,7 +72,7 @@ passport.deserializeUser(function(user_id, done) {
 const options = {
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "Prune098",
   port: "3306",
   database: "WaterSaver"
 };
@@ -84,7 +84,7 @@ var sessionStore = new MySQLStore(options);
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "Prune098",
   port: "3306",
 	database: "WaterSaver"
   //socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"

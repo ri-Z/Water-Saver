@@ -9,7 +9,17 @@ const mysql = require('mysql');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+      //express mysql session
+      const options = {
+        host: "localhost",
+        user: "root",
+        password: "root",
+        port: "3306",
+        database: "WaterSaver"
+      };
+      var sessionStore = new MySQLStore(options);
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 //const ejs = require('ejs');
 const multer = require('multer');
@@ -52,6 +62,7 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(session({
   secret: 'jibirish',
+  store: sessionStore,
   resave: false,
   saveUninitialized: false,
   //cookie: { secure: true }
@@ -59,32 +70,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//writing user data in the session
-passport.serializeUser(function(user_id, done) {
-  done(null, user_id);
-});
-//retrieving user datafrom the session
-passport.deserializeUser(function(user_id, done) {
-  done(null, user_id);
-});
-
-//express mysql session
-const options = {
-  host: "localhost",
-  user: "root",
-  password: "Prune098",
-  port: "3306",
-  database: "WaterSaver"
-};
-
-var sessionStore = new MySQLStore(options);
-
-
 
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Prune098",
+  password: "root",
   port: "3306",
 	database: "WaterSaver"
   //socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
@@ -163,20 +153,30 @@ app.post('/createUser', (request, response)=>{
       //response.send(result);
 
       let sql = "SELECT LAST_INSERT_ID() as user_id";
-      db.query(sql,(err,result)=>{
+      db.query(sql,(err,result, fields)=>{
         if(err)throw err;
 
-        var user_id = result[0];
-        console.log(result[0]);
+        const user_id = result[0];
+        console.log("O user_id é: " + result[0]);
 
           //LOGIN USER-create a session
-          request.login(user_id,function(err){
-            response.redirect('/index');
+          request.login(user_id, function(err){
+            response.redirect('/');
         });
       });
     });
   });
 });
+
+//writing user data in the session
+passport.serializeUser(function(user_id, done) {
+  done(null, user_id);
+});
+//retrieving user datafrom the session
+passport.deserializeUser(function(user_id, done) {
+    done(null, user_id);
+});
+
 
 function authenticationMiddleware() {
   return (request, response, next) => {
@@ -186,11 +186,40 @@ function authenticationMiddleware() {
       response.redirect('/login');
   }
 }
+
+// app.get('/loggedIn', authenticationMiddleware(), function(request, response) {
+//   console.log("Estou aqui loggedIn! " + request.isAuthenticated());
+//   if (request.isAuthenticated() == true) {
+//     let loggedIn = true;
+//     response.send(loggedIn);
+//   }else {
+//     let loggedIn = false;
+//     response.send(loggedIn);
+//   }
+//     //console.log(result);
+// });
+
+function headerMiddleware() {
+  return (request, response, next) => {
+    console.log("Estou aqui headerMiddleware! " + request.isAuthenticated());
+    if (request.isAuthenticated() == true) {
+      let loggedIn = true;
+      response.send(loggedIn);
+    }else {
+      let loggedIn = false;
+      response.send(loggedIn);
+    }
+  }
+}
+
 app.get('/index', authenticationMiddleware(), (request,response)=>{
   //deserializeUser ... if so - creates a session and returns a session key
-  console.log(request.user);
-  console.log(request.isAuthenticated());
+  console.log("O request.user é: " + request.user);
+  console.log("O request.user.isAuthenticated é: " + request.isAuthenticated());
   response.redirect('/');
+});
+app.get('/indexLoggedIn', authenticationMiddleware(), (request,response)=>{
+  response.redirect('/indexLoggedIn.html');
 });
 app.get('/post', authenticationMiddleware(), (request,response)=>{
   //deserializeUser ... if so - creates a session and returns a session key
@@ -210,7 +239,9 @@ app.post('/login', passport.authenticate('local', {
 app.get('/logout',(request,response)=>{
   request.logout();
   request.session.destroy();
-  response.redirect('/index');
+  //TENTAR POR A FUNCIONAR, PQ DA ERRO DE SINCRONIZACAO
+  // response.clearCookie('connect.sid', { path: '/' }).status(200).send('Cookie deleted.');
+  response.redirect('/');
 });
 //POR ISTO A DAR
 app.get('/register',(request,response)=>{
@@ -220,34 +251,83 @@ app.post('/register', passport.authenticate('local', {
   successRedirect: '/index',
   failureRedirect: '/login'
 }));
+app.get('/feed',(request,response)=>{
+  response.redirect('/Profile.html');
+});
+app.get('/issue',(request,response)=>{
+  response.redirect('/issue.html');
+});
 
-//verify if the user exists and the password is correct
+app.use(function(request, response, next) {
+  response.locals.isAuthenticated = request.isAuthenticated();
+  next();
+});
+//Routes
+// app.use('/', index);
+// app.use('/LogIn', login);
+// app.use('/SignUp', register);
+// app.use('/Post', post);
+
+
+// let loggedIn;
+// //verify if the user exists and the password is correct
+// passport.use(new LocalStrategy(
+//   function(username, password, done) {
+//     console.log(username);
+//     console.log(password);
+//
+//       db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], (err,result)=>{
+//       if(err)throw err;
+//           console.log(result[0]);
+//       //if nothing is returned
+//       if(result.length===0){
+//         console.log("Empty");
+//         done(null,false);
+//       }
+//       const hash = result[0].Password.toString();
+//       var response = bcrypt.compareSync(password, hash);
+//             if(response===true){
+//               return done(null, {user_id:result[0].idUser});
+//               response.redirect('/index');
+//               loggedIn = true;
+//             }else{
+//               done(null,false);
+//               loggedIn = false;
+//             }
+//     });
+//     //por string a false
+//       return done(null, "falselel");
+//   }
+// ));
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    console.log(username);
-    console.log(password);
-    // db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], (err,result)=>{
-      db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], (err,result)=>{
-      if(err)throw err;
-          console.log(result[0]);
-      //if nothing is returned
-      if(result.length===0){
-        console.log("Empty");
-        done(null,false);
-      }
-      const hash = result[0].Password.toString();
-      var response = bcrypt.compareSync(password, hash);
-            if(response===true){
-              return done(null, {user_id:result[0].idUser});
-              response.redirect('/index');
-            }else{
-              done(null,false);
+      console.log(username);
+      console.log(password);
+
+      db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username], function(err, results, fields){
+        if (err) {
+          done(err);
+        };
+        if (results.length === 0) {
+          console.log("Empty field");
+          done(null, false);
+        }else {
+          const hash = results[0].Password.toString();
+          console.log("O results[0] é: " + results[0].Password.toString());
+
+          bcrypt.compare(password, hash, function(err, response){
+            if (response === true) {
+              return done(null, {user_id: results[0].idUser});
+            }else {
+              return done(null, false);
             }
-    });
-    //por string a false
-      return done(null, "falselel");
-  }
+          });
+        }
+      })
+    }
 ));
+
 
 
 
@@ -293,12 +373,20 @@ app.post('/uploadimage',multer({
       // var query2 = db.query("INSERT INTO Media(idPostFK, Media) VALUES (?, ?, ?);", data2, function(err, rows) {
       //   if (err) throw err;
       // });
-      res.redirect('/Profile.html');
+      res.redirect('/feed');
     });
 });
 
 app.get('/showPost', function(request, response) {
   db.query("Select * From Post Order by idPost DESC;", function(err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    response.send(result);
+  });
+});
+
+app.get('/issue', function(request, response) {
+  db.query("Select Media From Post WHERE Order by idPost DESC;", function(err, result, fields) {
     if (err) throw err;
     //console.log(result);
     response.send(result);

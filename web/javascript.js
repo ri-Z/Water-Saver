@@ -52,6 +52,7 @@ function showPost() {
     for (var i = 0; i < data.length; i++) {
 
       var title = document.createElement('h5');
+      var a = document.createElement('a');
       var img = document.createElement('img');
       var column = document.createElement('div');
 
@@ -64,7 +65,12 @@ function showPost() {
       title.setAttribute('top', '5px');
       title.setAttribute('left', '5px');
 
+
+      $(a).attr('href','issue.html'); //add attribute with jQuery
+      //a.setAttribute('href','issue.html');
+
       img.setAttribute('src', stringImg);
+      console.log(stringImg);
       img.setAttribute('width', "400px");
       img.setAttribute('height', "400px");
       // img.setAttribute('position', "relative");
@@ -73,8 +79,48 @@ function showPost() {
 
       var div = document.getElementById('row');
       column.appendChild(title);
-      column.appendChild(img);
+      // column.appendChild(img);
+      column.appendChild(a);
+      a.appendChild(img);
       div.appendChild(column);
+    }
+  }
+}
+
+
+// if (isAuthenticated()){
+//     $('<a id="home" href="/">Home</a>'+
+//       '<a id="about" href="About.html">About</a>'+
+//       '<a id="profile" href="Profile.html">Feed</a>'+
+//       '<a id="post" href="/post">Make a Post</a>' +
+//       '<a id="logout" href="/logout">Logout</a>').appendTo("#nav");
+// }else {
+//   $('<a id="home" href="/">Home</a>'+
+//     '<a id="about" href="About.html">About</a>'+
+//     '<a id="profile" href="Profile.html">Feed</a>'+
+//     '<a id="signup" href="SignUp.html">SignUp</a>' +
+//     '<a id="login" href="/login">LogIn</a>').appendTo("#nav");
+// }
+
+
+// console.log("A cookie" + document.cookie);
+
+function loggedIn() {
+  $.getJSON('/loggedIn', success);
+  function success(data) {
+    if (data == true){
+      console.log(data);
+        $('<a id="home" href="/">Home</a>'+
+          '<a id="about" href="About.html">About</a>'+
+          '<a id="profile" href="Profile.html">Feed</a>'+
+          '<a id="post" href="/post">Make a Post</a>' +
+          '<a id="logout" href="/logout">Logout</a>').appendTo("#nav");
+    }else {
+      $('<a id="home" href="/">Home</a>'+
+        '<a id="about" href="About.html">About</a>'+
+        '<a id="profile" href="Profile.html">Feed</a>'+
+        '<a id="signup" href="SignUp.html">SignUp</a>' +
+        '<a id="login" href="/login">LogIn</a>').appendTo("#nav");
     }
   }
 }

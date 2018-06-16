@@ -72,6 +72,7 @@ function showPost() {
       // title.setAttribute('position', 'absolute');
       title.setAttribute('top', '5px');
       title.setAttribute('left', '5px');
+      title.setAttribute('align', 'center');
 
 
       $(a).attr('href','/issue/' + data[i].idPost); //add attribute with jQuery
@@ -82,6 +83,9 @@ function showPost() {
       console.log(stringImg);
       img.setAttribute('width', "400px");
       img.setAttribute('height', "400px");
+      img.setAttribute('margin-left', "auto");
+      img.setAttribute('margin-right', "auto");
+      img.setAttribute('display', "block");
       img.setAttribute('onclick', "goToIssue(data[i].idPost)");
 
       // <a href="issue.html#id">

@@ -43,11 +43,17 @@ function PwValidate() {
   }
 }
 
+  function goToIssue(id) {
+    return function() {
+      window.location.href = "/issue/" + id;
+    }
+  }
+
+
 function showPost() {
 
   //DISPLAY THE POSTED PICTURE WITH INFO
   $.getJSON('/showPost', success); //GET THE RESULT FROM THIS ROUTE AND EXECUTES THE FUNCTION 'SUCCESS'
-
   function success(data) {
     for (var i = 0; i < data.length; i++) {
 
@@ -56,6 +62,8 @@ function showPost() {
       var img = document.createElement('img');
       var column = document.createElement('div');
 
+      // var p = document.createElement('p');
+      // p.innerHTML = data[i].Description;
       console.log(data);
 
       title.innerHTML = data[i].Title;
@@ -66,14 +74,20 @@ function showPost() {
       title.setAttribute('left', '5px');
 
 
-      $(a).attr('href','issue.html'); //add attribute with jQuery
+      $(a).attr('href','/issue/' + data[i].idPost); //add attribute with jQuery
+      //$(a).attr('href','/issue/' + data[i].idPost);
       //a.setAttribute('href','issue.html');
 
       img.setAttribute('src', stringImg);
       console.log(stringImg);
       img.setAttribute('width', "400px");
       img.setAttribute('height', "400px");
+      img.setAttribute('onclick', "goToIssue(data[i].idPost)");
+
+      // <a href="issue.html#id">
       // img.setAttribute('position', "relative");
+
+      // p.setAttribute('id', 'feedParagraph');
 
       column.setAttribute('class', 'column');
 
@@ -82,10 +96,79 @@ function showPost() {
       // column.appendChild(img);
       column.appendChild(a);
       a.appendChild(img);
+      // column.appendChild(p);
       div.appendChild(column);
     }
   }
 }
+
+// function issue() {
+//
+// //DISPLAY THE SELECTED POSTED PICTURE WITH INFO
+// $.getJSON('/Issue', {id: window.location.hash}, success); //GET THE RESULT FROM THIS ROUTE AND EXECUTES THE FUNCTION 'SUCCESS'
+//
+// function success(data) {
+//   console.log('oi');
+//   for (var i = 0; i < data.length; i++) {
+//
+//
+//
+//     var title = document.createElement('h2');
+//     var description = document.createElement('p');
+//     var floor = document.createElement('p');
+//     var room = document.createElement('p');
+//     var media = document.createElement('p');
+//     var image = document.createElement('img');
+//
+//     console.log(data);
+//
+//     title.innerHTML = data[i].Title;
+//     description.innerHTML = "Description: " + data[i].Description;
+//     floor.innerHTML = "Floor: " + data[i].Floor;
+//     room.innerHTML = "Room: " + data[i].Room;
+//
+//     var stringImg = data[i].Media.split('web/').pop();
+//     if (src == stringImg) {
+//       media.innerHTML = "Media: " + stringImg;
+//     } else {
+//       media.innerHTML = "";
+//     }
+//     // media.innerHTML = "Media: " + data[i].Media.split('web/').pop();
+//
+//
+//
+//     // title.setAttribute('position', 'absolute');
+//     title.setAttribute('id', 'issueTitle');
+//     // title.setAttribute('top', '5px');
+//     // title.setAttribute('left', '5px');
+//
+//     description.setAttribute('id', 'issueDescription');
+//     floor.setAttribute('id', 'issueFloor');
+//     room.setAttribute('id', 'issueRoom');
+//     media.setAttribute('id', 'issueMedia');
+//
+//     image.setAttribute('id', 'issueImage');
+//     image.setAttribute('src', stringImg);
+//     console.log(stringImg);
+//     image.setAttribute('width', "400px");
+//     image.setAttribute('height', "400px");
+//     // image.setAttribute('position', "relative");
+//
+//
+//     // var titleId = document.getElementById('issueTitle');
+//     var headerId = document.getElementById('headerImage');
+//     var selectedImage = document.getElementById('selectedImage');
+//
+//     headerId.appendChild(title);
+//     console.log(image, description, floor, room, media);
+//     selectedImage.appendChild(image);
+//     selectedImage.appendChild(description);
+//     selectedImage.appendChild(floor);
+//     selectedImage.appendChild(room);
+//     selectedImage.appendChild(media);
+//     }
+//   }
+// }
 
 
 // if (isAuthenticated()){
@@ -120,7 +203,7 @@ function loggedIn() {
         '<a id="about" href="About.html">About</a>'+
         '<a id="profile" href="Profile.html">Feed</a>'+
         '<a id="signup" href="SignUp.html">SignUp</a>' +
-        '<a id="login" href="/login">LogIn</a>').appendTo("#nav");
+        '<a id="login" href="/login">LogIn</a>').appendChild("#nav");
     }
   }
 }

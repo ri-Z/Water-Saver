@@ -71,7 +71,7 @@ function showPost() {
 
       // title.setAttribute('position', 'absolute');
       title.setAttribute('top', '5px');
-      title.setAttribute('left', '5px');
+      // title.setAttribute('left', '5px');
       title.setAttribute('align', 'center');
 
 
@@ -81,8 +81,8 @@ function showPost() {
 
       img.setAttribute('src', stringImg);
       console.log(stringImg);
-      img.setAttribute('width', "400px");
-      img.setAttribute('height', "400px");
+      img.setAttribute('width', "450px");
+      img.setAttribute('height', "450px");
       img.setAttribute('margin-left', "auto");
       img.setAttribute('margin-right', "auto");
       img.setAttribute('display', "block");
@@ -192,22 +192,43 @@ function showPost() {
 
 // console.log("A cookie" + document.cookie);
 
-function loggedIn() {
-  $.getJSON('/loggedIn', success);
-  function success(data) {
-    if (data == true){
-      console.log(data);
-        $('<a id="home" href="/">Home</a>'+
-          '<a id="about" href="About.html">About</a>'+
-          '<a id="profile" href="Profile.html">Feed</a>'+
-          '<a id="post" href="/post">Make a Post</a>' +
-          '<a id="logout" href="/logout">Logout</a>').appendTo("#nav");
-    }else {
-      $('<a id="home" href="/">Home</a>'+
-        '<a id="about" href="About.html">About</a>'+
-        '<a id="profile" href="Profile.html">Feed</a>'+
-        '<a id="signup" href="SignUp.html">SignUp</a>' +
-        '<a id="login" href="/login">LogIn</a>').appendChild("#nav");
-    }
-  }
-}
+// function loggedIn() {
+//   $.getJSON('/loggedIn', success);
+//   function success(data) {
+//     if (data == true){
+//       console.log(data);
+//         $('<a id="home" href="/">Home</a>'+
+//           '<a id="about" href="About.html">About</a>'+
+//           '<a id="profile" href="Profile.html">Feed</a>'+
+//           '<a id="post" href="/post">Make a Post</a>' +
+//           '<a id="logout" href="/logout">Logout</a>').appendTo("#nav");
+//     }else {
+//       $('<a id="home" href="/">Home</a>'+
+//         '<a id="about" href="About.html">About</a>'+
+//         '<a id="profile" href="Profile.html">Feed</a>'+
+//         '<a id="signup" href="SignUp.html">SignUp</a>' +
+//         '<a id="login" href="/login">LogIn</a>').appendChild("#nav");
+//     }
+//   }
+// }
+
+
+// function header() {
+//   $.post('/login', success);
+//   function success(data) {
+//     if (data === 'done'){
+//       console.log("header funtion data is: " + data);
+//         $('<a id="home" href="/">Home</a>'+
+//           '<a id="about" href="About.html">About</a>'+
+//           '<a id="profile" href="Profile.html">Feed</a>'+
+//           '<a id="post" href="/post">Make a Post</a>' +
+//           '<a id="logout" href="/logout">Logout</a>').appendTo("#nav");
+//     }else {
+//       $('<a id="home" href="/">Home</a>'+
+//         '<a id="about" href="About.html">About</a>'+
+//         '<a id="profile" href="Profile.html">Feed</a>'+
+//         '<a id="signup" href="SignUp.html">SignUp</a>' +
+//         '<a id="login" href="/login">LogIn</a>').appendChild("#nav");
+//     }
+//   }
+// }

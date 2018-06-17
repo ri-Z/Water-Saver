@@ -18,6 +18,11 @@ input[type=text], input[type=password], input[type=text],input[type=email], .des
     border: 1px solid #555
 }
 
+input#statusFixed, input#statusBroken
+{
+	display: none;
+}
+
 .floorOptions
 {
     width: 3%;
@@ -82,31 +87,37 @@ input[type=text], input[type=password], input[type=text],input[type=email], .des
          <label for="title"><p>Title:</p></label>
             <input id="title" type="text" name="title" value="" placeholder="Enter your a Title">
             <section id="boht">
-            <div id="Floor1">
-            	<br>
-           <label for="floor"><p>Floor:</p></label>
-						<select class="floorOptions" name="floor">
-							<option value="null"></option>
-	          	<option value="-3">-3</option>
-							<option value="-2">-2</option>
-							<option value="-1">-1</option>
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-	            </select>
-	        </div>
-	        <div id="Room1">
-	        	<br>
-        <label for="room"><p>Room:</p></label>
-
-          <input id="room" type="text" name="room" value="" placeholder="Enter a Room">
-          </div>
-      </div>
+	            <div id="Floor1">
+	            	<br>
+	           <label for="floor"><p>Floor:</p></label>
+							<select class="floorOptions" name="floor">
+								<option value="null"></option>
+		          	<option value="-3">-3</option>
+								<option value="-2">-2</option>
+								<option value="-1">-1</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+		            </select>
+		        </div>
+		        <div id="Room1">
+		        	<br>
+	        		<label for="room"><p>Room:</p></label>
+	          		<input id="room" type="text" name="room" value="" placeholder="Enter a Room">
+	          </div>
+						<div id="Status1">
+							<br>
+	        		<label for="status"><p>Status:</p></label>
+								<input id="statusBroken" type="radio" name="status" value="0" placeholder="Select a Status">
+									<label for="statusBroken"><p>Broken</p></label>
+								<input id="statusFixed" type="radio" name="status" value="1" placeholder="Select a Status">
+									<label for="statusFixed"><p>Fixed</p></label>
+						</div>
       </section>
       <br><br><br><br><br><br>
 
@@ -114,7 +125,7 @@ input[type=text], input[type=password], input[type=text],input[type=email], .des
 						<label for="description"><p>Description:</p></label>
 							<textarea class="description" type="text" name="description"></textarea>
 						<label for="Media"><p>Upload a Picture</p></label>
-							<input id="file" type="file" name="file">
+							<input id="file" type="file" name="file" multiple >
 							<input id="submitPost" type="submit" name="submit" value="Post Picture" onclick="showPost();">
       </label>
     </form>

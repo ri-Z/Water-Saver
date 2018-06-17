@@ -13,7 +13,7 @@ const MySQLStore = require('express-mysql-session')(session);
       const options = {
         host: "localhost",
         user: "root",
-        password: "root",
+        password: "Prune098",
         port: "3306",
         database: "WaterSaver"
       };
@@ -74,7 +74,7 @@ app.use(passport.session());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "Prune098",
   port: "3306",
 	database: "WaterSaver"
   //socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"

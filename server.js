@@ -28,7 +28,10 @@ const serveStatic = require('serve-static');
 const bcrypt = require('bcrypt');
   const saltRounds = 10;
 
-// app.set('view engine', 'ejs');
+const getImageUrls = require('get-image-urls');
+const request = require('request');
+
+app.set('view engine', 'ejs');
 // app.get('/', (req, res) => res.render('index'));
 
 const server = app.listen(3000, () => console.log('App running on port 3000!'));
@@ -254,9 +257,6 @@ app.post('/register', passport.authenticate('local', {
 app.get('/feed',(request,response)=>{
   response.redirect('/Profile.html');
 });
-app.get('/issue',(request,response)=>{
-  response.redirect('/issue.html');
-});
 
 app.use(function(request, response, next) {
   response.locals.isAuthenticated = request.isAuthenticated();
@@ -353,7 +353,7 @@ app.post('/uploadimage',multer({
     }
 }).single('file'), function(req, res) {
   console.log(req.body);
-  console.log(req.file);
+  console.log("O req file é " + req.file.path);
   var data = [
       req.body.title,
       req.body.description,
@@ -377,18 +377,36 @@ app.post('/uploadimage',multer({
     });
 });
 
-app.get('/showPost', function(request, response) {
+
+app.get('/showPost', function(request, response/*, next*/) {
   db.query("Select * From Post Order by idPost DESC;", function(err, result, fields) {
     if (err) throw err;
-    console.log(result);
+    //console.log(result);
+    console.log("Example Data Result 0: " + result[0].Media);
+    for (var i = 0; i < result.length; i++) {
+      console.log(result[i].idPost + " - " + result[i].Media);
+      // var mediaSrc = request.body.feedParagraph;
+      // var mediaSrc = document.getElementById('feedParagraph').value;
+      // console.log("mediaSrc: " + mediaSrc);
+    }
+    // getImageUrls('/Profile', function(err, images) {
+    //   if (!err) {
+    //     console.log('Images found', images.length);
+    //     console.log(images);
+    //   }
+    //   else {
+    //     console.log('ERROR', err);
+    //   }
+    // })
     response.send(result);
   });
+  //next();
 });
 
-app.get('/issue', function(request, response) {
-  db.query("Select Media From Post WHERE Order by idPost DESC;", function(err, result, fields) {
+app.get('/issue/:id', authenticationMiddleware(), function(request, response) {
+  db.query("Select * From Post WHERE idPost = ?;", [request.params.id], function(err, result, fields) {
     if (err) throw err;
-    //console.log(result);
-    response.send(result);
+    console.log(result)
+    response.render('issue', {issue: result[0]});
   });
 });

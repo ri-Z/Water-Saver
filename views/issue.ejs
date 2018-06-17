@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>IADE REPORTER</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="/css/main.css">
+		<style media="screen">
+			*{
+				box-sizing: border-box;
+			}
+
+			.column{
+				float: left;
+				width: 33.33%;
+				padding:5px;
+			}
+
+			.row::after{
+				content: "";
+				clear: both;
+				display: table;
+			}
+		</style>
+	</head>
+	<body class="subpage">
+
+		<header id="header">
+			<div class="inner">
+ 				<a href="/" class="logo"><strong>REPORTER</strong> for IADE</a>
+ 				<nav id="nav">
+					<a href="/">Home</a>
+					<a href="/About.html">About</a>
+					<a href="/Profile.html">Feed</a>
+					<a href="/SignUp.html">SignUp</a>
+					<a href="/login">LogIn</a>
+					<a href="/post">Make a Post</a>
+					<a href="/logout">Logout</a>
+				</nav>
+				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+			</div>
+		</header>
+
+		<!-- Main -->
+
+			<section id="banner1" class="wrapper">
+				<div class="inner">
+					<header id="headerImage" class="align-center">
+              <h2 id="issueTitle"><%= issue.Title %></h2>
+						<div id="selectedImage">
+							<img id="issueImage" width="400px" height="400px" src="/<%- issue.Media.split('web/').pop() %>"></img>
+              <p id="issueDescription">Description: <%= issue.Description %></p>
+              <p id="issueFloor">Floor: <%= issue.Floor %></p>
+              <p id="issueRoom">Room: <%= issue.Room %></p>
+              <p id="issueMedia">Media: <%= issue.Media %></p>
+						</div>
+					</header>
+				</section>
+					<section id="three" class="wrapper align-center">
+				 		<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            	<a href="https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="fancybox" rel="ligthbox">
+              <img  src="/iade1.jpg" class="zoom img-fluid "  alt="">
+            </a>
+          </div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="copyright">
+						&copy; Reporter for <a href="https://www.iade.europeia.pt/">IADE</a>.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+		<script src="/js/jquery.min.js"></script>
+		<script type="text/javascript" language="javascript" src="/javascript.js"></script>
+		<script>
+    //DISPLAY THE SELECTED POSTED PICTURE WITH INFO
+    function success(data) {
+      console.log('oi');
+      for (var i = 0; i < data.length; i++) {
+
+
+
+        var title = document.createElement('h2');
+        var description = document.createElement('p');
+        var floor = document.createElement('p');
+        var room = document.createElement('p');
+        var media = document.createElement('p');
+        var image = document.createElement('img');
+
+        console.log(data);
+
+        title.innerHTML = data[i].Title;
+        description.innerHTML = "Description: " + data[i].Description;
+        floor.innerHTML = "Floor: " + data[i].Floor;
+        room.innerHTML = "Room: " + data[i].Room;
+
+        var stringImg = "";
+        if (src == stringImg) {
+          media.innerHTML = "Media: " + stringImg;
+        } else {
+          media.innerHTML = "";
+        }
+        // media.innerHTML = "Media: " + data[i].Media.split('web/').pop();
+
+
+
+        // title.setAttribute('position', 'absolute');
+        title.setAttribute('id', 'issueTitle');
+        // title.setAttribute('top', '5px');
+        // title.setAttribute('left', '5px');
+
+        description.setAttribute('id', 'issueDescription');
+        floor.setAttribute('id', 'issueFloor');
+        room.setAttribute('id', 'issueRoom');
+        media.setAttribute('id', 'issueMedia');
+
+        image.setAttribute('id', 'issueImage');
+        image.setAttribute('src', stringImg);
+        console.log(stringImg);
+        image.setAttribute('width', "400px");
+        image.setAttribute('height', "400px");
+        // image.setAttribute('position', "relative");
+
+
+        // var titleId = document.getElementById('issueTitle');
+        var headerId = document.getElementById('headerImage');
+        var selectedImage = document.getElementById('selectedImage');
+
+        headerId.appendChild(title);
+        console.log(image, description, floor, room, media);
+        selectedImage.appendChild(image);
+        selectedImage.appendChild(description);
+        selectedImage.appendChild(floor);
+        selectedImage.appendChild(room);
+        selectedImage.appendChild(media);
+      }
+    }
+    </script>
+	</body>
+</html>

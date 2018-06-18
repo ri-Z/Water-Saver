@@ -50,24 +50,25 @@
 					<header id="headerImage" class="align-center">
               <h2 id="issueTitle"><%= issue.Title %></h2>
 						<div id="selectedImage">
-							<img id="issueImage" width="550px" height="550px" src="/<%- issue.Media.split('web\\).pop() %>"></img>
+							<img id="issueImage" width="550px" height="550px" src="/<%- issue.Media.split('web/').pop() %>"></img>
               <p id="issueDescription">Description: <%= issue.Description %></p>
               <p id="issueFloor">Floor: <%= issue.Floor %></p>
               <p id="issueRoom">Room: <%= issue.Room %></p>
 							<p id="issueStatus">Status: <% var brokenfixed; if(issue.Status == 0){brokenfixed = "Broken";} else{brokenfixed = "Fixed";} %>
 																					<%= brokenfixed; %></p>
               <p id="issueMedia">Media: <%= issue.Media %></p>
-              <a href="/Profile.html">
-              <button>Back</button>
 						</div>
 					</header>
 				</section>
 					<section id="three" class="wrapper align-center">
-				 		<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+						<div id="row" class="row">
+
+						</div>
+				 		<!-- <div class="col-lg-3 col-md-4 col-xs-6 thumb">
             	<a href="https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="fancybox" rel="ligthbox">
               <img src="/iade1.jpg" class="zoom img-fluid " alt="">
             </a>
-          </div>
+          </div> -->
 			</section>
 
 		<!-- Footer -->

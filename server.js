@@ -502,3 +502,10 @@ app.get('/issue/:id', middleware.authenticationMiddleware, function(request, res
     response.render('issue', {issue: result});
   });
 });
+
+app.post('/delete/:id', middleware.authenticationMiddleware, function(request, response){
+   db.query("DELETE FROM Post WHERE idPost = ?;", [request.params.id], function(err, result) {
+     if (err) throw err;
+   });
+  response.redirect('/feed');
+});

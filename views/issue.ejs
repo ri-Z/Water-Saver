@@ -32,7 +32,7 @@
  				<nav id="nav">
 					<!-- <a href="/">Home</a>
 					<a href="/About.html">About</a>
-					<a href="/Profile.html">Feed</a>
+					<a href="/feed">Feed</a>
 					<a href="/SignUp.html">SignUp</a>
 					<a href="/login">LogIn</a>
 					<a href="/post">Make a Post</a>
@@ -50,19 +50,23 @@
 					<header id="headerImage" class="align-center">
               <h2 id="issueTitle"><%= issue.Title %></h2>
 						<div id="selectedImage">
-							<img id="issueImage" width="550px" height="550px" src="/<%- issue.Media.split('web/').pop() %>"></img>
-              <p id="issueDescription">Description: <%= issue.Description %></p>
-              <p id="issueFloor">Floor: <%= issue.Floor %></p>
-              <p id="issueRoom">Room: <%= issue.Room %></p>
-							<p id="issueStatus">Status: <% var brokenfixed; if(issue.Status == 0){brokenfixed = "Broken";} else{brokenfixed = "Fixed";} %>
+							<img id="issueImage" width="550px" height="550px" src="/<%- issue[0].Media.split('web/').pop() %>"></img>
+              <p id="issueDescription">Description: <%= issue[0].Description %></p>
+              <p id="issueFloor">Floor: <%= issue[0].Floor %></p>
+              <p id="issueRoom">Room: <%= issue[0].Room %></p>
+							<p id="issueStatus">Status: <% var brokenfixed; if(issue[0].Status == 0){brokenfixed = "Broken";} else{brokenfixed = "Fixed";} %>
 																					<%= brokenfixed; %></p>
-              <p id="issueMedia">Media: <%= issue.Media %></p>
+              <!-- <p id="issueMedia">Media: <%= issue[0].Media %></p> -->
 						</div>
 					</header>
 				</section>
 					<section id="three" class="wrapper align-center">
 						<div id="row" class="row">
-
+							<% for(var i = 0; i < issue.length; i++) { %>
+							<div class="column">
+								<img width="75%" height="" src="/<%- issue[i].Media.split('web/').pop() %>"></img>
+							</div>
+							<% } %>
 						</div>
 				 		<!-- <div class="col-lg-3 col-md-4 col-xs-6 thumb">
             	<a href="https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="fancybox" rel="ligthbox">

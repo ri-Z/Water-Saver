@@ -277,7 +277,7 @@ app.post('/register', passport.authenticate('local', {
   failureRedirect: '/login'
 }));
 app.get('/feed',(request,response)=>{
-  response.redirect('/Profile.html');
+  response.redirect('/feed.html');
 });
 
 app.use(function(request, response, next) {
@@ -373,7 +373,7 @@ app.post('/uploadimage',multer({
         }
         callback(null, true)
     }
-}).array('file', 2), function(req, res) {
+}).array('file', 6), function(req, res) {
   console.log(req.body);
   console.log("O req file é " + req.files[0].path);
   var data = [
@@ -391,12 +391,12 @@ app.post('/uploadimage',multer({
       console.log("O array[" + i + "] de files é " + req.files[i].path);
     }
 
-    var post_id;
-    var imagem = req.files;
-    var data2 = [
-      post_id,
-      imagem.path
-    ];
+    // var post_id;
+    // var imagem = req.files;
+    // var data2 = [
+    //   post_id,
+    //   imagem.path
+    // ];
     // var query = db.query("INSERT INTO Post(Title, Description, Floor, Room, Status, Media) VALUES (?, ?, ?, ?, ?, ?);" , data, function(err, rows) {
     var query = db.query("INSERT INTO Post(Title, Description, Floor, Room, Status) VALUES (?, ?, ?, ?, ?);" , data, function(err, rows) {
       if (err) {throw err;} else {
@@ -498,7 +498,7 @@ app.get('/showPost', function(request, response/*, next*/) {
 app.get('/issue/:id', middleware.authenticationMiddleware, function(request, response) {
   db.query("Select * From Post p JOIN Media m ON (p.idPost = m.idPostFK) WHERE idPost = ?;", [request.params.id], function(err, result, fields) {
     if (err) throw err;
-    console.log(result)
-    response.render('issue', {issue: result[0]});
+    console.log("O issue result é: " + JSON.stringify(result));
+    response.render('issue', {issue: result});
   });
 });

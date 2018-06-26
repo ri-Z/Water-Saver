@@ -49,6 +49,17 @@ function PwValidate() {
     }
   }
 
+  function deleteMediaFromIssue(id) {
+    return function() {
+      window.location.href = "/delete/" + id;
+    }
+  }
+
+  function FixedBroken(id) {
+    return function() {
+      window.location.href = "/FixedBroken/" + id;
+    }
+  }
 
 function showPost() {
 
@@ -61,12 +72,57 @@ function showPost() {
       var a = document.createElement('a');
       var img = document.createElement('img');
       var column = document.createElement('div');
+      var status = document.createElement('p');
+      var simpleDiv = document.createElement('div');
+      var FixedBroken;
 
-      // var p = document.createElement('p');
-      // p.innerHTML = data[i].Description;
+
       console.log(data);
 
-      title.innerHTML = data[i].Title;
+      if(data[i].Status == 1){
+        title.innerHTML = data[i].Title;
+        FixedBroken = "Fixed";
+        status.innerHTML = FixedBroken;
+        status.setAttribute('class', FixedBroken);
+        status.setAttribute('style', "color:teal");
+        status.setAttribute('align', 'center');
+        // status.setAttribute('onclick', "filterSelection(" + FixedBroken + ")");
+        simpleDiv.setAttribute('class', 'columnFixed');
+      }
+      else {
+        title.innerHTML = data[i].Title;
+        FixedBroken = "Broken";
+        status.innerHTML = FixedBroken;
+        status.setAttribute('class', FixedBroken);
+        status.setAttribute('style', "color:red");
+        status.setAttribute('align', 'center');
+        // status.setAttribute('onclick', "filterSelection(" + FixedBroken + ")");
+        simpleDiv.setAttribute('class', 'columnBroken');
+      }
+
+      var simpleDivClassFixed = document.getElementsByClassName('columnFixed');
+      var simpleDivClassBroken = document.getElementsByClassName('columnBroken');
+
+      function filterSelection(statusIssue) {
+        console.log(statusIssue);
+        if (statusIssue == 'Fixed') {
+          // simpleDivClassFixed.style.display = "block";
+          // simpleDivClassBroken.style.display = "none";
+          simpleDivClassFixed.setAttribute('style', "display:block");
+          simpleDivClassBroken.setAttribute('style', "display:none");
+        } else if(statusIssue == 'Broken'){
+          // simpleDivClassFixed.style.display = "none"
+          // simpleDivClassBroken.style.display = "block";
+          simpleDivClassFixed.setAttribute('style', "display:none");
+          simpleDivClassBroken.setAttribute('style', "display:block");
+        } else if(statusIssue == 'all'){
+          // simpleDivClassFixed.style.display = "block";
+          // simpleDivClassBroken.style.display = "block";
+          simpleDivClassFixed.setAttribute('style', "display:block");
+          simpleDivClassBroken.setAttribute('style', "display:block");
+        }
+      }
+
       var stringImg = data[i].Media.split('web/').pop();
 
       // title.setAttribute('position', 'absolute');
@@ -89,24 +145,216 @@ function showPost() {
       img.setAttribute('onclick', "goToIssue(data[i].idPost)");
 
       // <a href="issue.html#id">
-      // img.setAttribute('position', "relative");
 
-      // p.setAttribute('id', 'feedParagraph');
+      // Add active class to the current button (highlight it)
+      // var btnContainer = document.getElementById("myBtnContainer");
+      // var btns = btnContainer.getElementsByClassName("btn");
+      // for (var i = 0; i < btns.length; i++) {
+      //   btns[i].addEventListener("click", function(){
+      //     var current = document.getElementsByClassName("active");
+      //     current[0].className = current[0].className.replace(" active", "");
+      //     this.className += " active";
+      //   });
+      // }
 
       column.setAttribute('class', 'column');
 
       var div = document.getElementById('row');
-      column.appendChild(title);
-      // column.appendChild(img);
-      column.appendChild(a);
+      column.appendChild(simpleDiv);
+      simpleDiv.appendChild(title);
+      simpleDiv.appendChild(a);
       a.appendChild(img);
-      // column.appendChild(p);
+      simpleDiv.appendChild(status);
       div.appendChild(column);
     }
   }
 }
 
+function showFixed() {
 
+  //DISPLAY THE POSTED PICTURE WITH INFO
+  $.getJSON('/Fixed', success); //GET THE RESULT FROM THIS ROUTE AND EXECUTES THE FUNCTION 'SUCCESS'
+  function success(data) {
+    for (var i = 0; i < data.length; i++) {
+
+      var title = document.createElement('h5');
+      var a = document.createElement('a');
+      var img = document.createElement('img');
+      var column = document.createElement('div');
+      var status = document.createElement('p');
+      var simpleDiv = document.createElement('div');
+      var FixedBroken;
+
+
+      console.log(data);
+
+      if(data[i].Status == 1){
+        title.innerHTML = data[i].Title;
+        FixedBroken = "Fixed";
+        status.innerHTML = FixedBroken;
+        status.setAttribute('class', FixedBroken);
+        status.setAttribute('style', "color:teal");
+        status.setAttribute('align', 'center');
+        // status.setAttribute('onclick', "filterSelection(" + FixedBroken + ")");
+        simpleDiv.setAttribute('class', 'columnFixed');
+      }
+      else {
+        title.innerHTML = data[i].Title;
+        FixedBroken = "Broken";
+        status.innerHTML = FixedBroken;
+        status.setAttribute('class', FixedBroken);
+        status.setAttribute('style', "color:red");
+        status.setAttribute('align', 'center');
+        // status.setAttribute('onclick', "filterSelection(" + FixedBroken + ")");
+        simpleDiv.setAttribute('class', 'columnBroken');
+      }
+
+      var simpleDivClassFixed = document.getElementsByClassName('columnFixed');
+      var simpleDivClassBroken = document.getElementsByClassName('columnBroken');
+
+      function filterSelection(statusIssue) {
+        console.log(statusIssue);
+        if (statusIssue == 'Fixed') {
+          // simpleDivClassFixed.style.display = "block";
+          // simpleDivClassBroken.style.display = "none";
+          simpleDivClassFixed.setAttribute('style', "display:block");
+          simpleDivClassBroken.setAttribute('style', "display:none");
+        } else if(statusIssue == 'Broken'){
+          // simpleDivClassFixed.style.display = "none"
+          // simpleDivClassBroken.style.display = "block";
+          simpleDivClassFixed.setAttribute('style', "display:none");
+          simpleDivClassBroken.setAttribute('style', "display:block");
+        } else if(statusIssue == 'all'){
+          // simpleDivClassFixed.style.display = "block";
+          // simpleDivClassBroken.style.display = "block";
+          simpleDivClassFixed.setAttribute('style', "display:block");
+          simpleDivClassBroken.setAttribute('style', "display:block");
+        }
+      }
+
+      var stringImg = data[i].Media.split('web/').pop();
+
+      title.setAttribute('top', '5px');
+      title.setAttribute('align', 'center');
+
+
+      $(a).attr('href','/issue/' + data[i].idPost);
+
+      img.setAttribute('src', stringImg);
+      console.log(stringImg);
+      img.setAttribute('width', "450px");
+      img.setAttribute('height', "450px");
+      img.setAttribute('margin-left', "auto");
+      img.setAttribute('margin-right', "auto");
+      img.setAttribute('display', "block");
+      img.setAttribute('onclick', "goToIssue(data[i].idPost)");
+
+
+      column.setAttribute('class', 'column');
+
+      var div = document.getElementById('row');
+      column.appendChild(simpleDiv);
+      simpleDiv.appendChild(title);
+      simpleDiv.appendChild(a);
+      a.appendChild(img);
+      simpleDiv.appendChild(status);
+      div.appendChild(column);
+    }
+  }
+}
+
+function showBroken() {
+
+  //DISPLAY THE POSTED PICTURE WITH INFO
+  $.getJSON('/Broken', success); //GET THE RESULT FROM THIS ROUTE AND EXECUTES THE FUNCTION 'SUCCESS'
+  function success(data) {
+    for (var i = 0; i < data.length; i++) {
+
+      var title = document.createElement('h5');
+      var a = document.createElement('a');
+      var img = document.createElement('img');
+      var column = document.createElement('div');
+      var status = document.createElement('p');
+      var simpleDiv = document.createElement('div');
+      var FixedBroken;
+
+
+      console.log(data);
+
+      if(data[i].Status == 1){
+        title.innerHTML = data[i].Title;
+        FixedBroken = "Fixed";
+        status.innerHTML = FixedBroken;
+        status.setAttribute('class', FixedBroken);
+        status.setAttribute('style', "color:teal");
+        status.setAttribute('align', 'center');
+        // status.setAttribute('onclick', "filterSelection(" + FixedBroken + ")");
+        simpleDiv.setAttribute('class', 'columnFixed');
+      }
+      else {
+        title.innerHTML = data[i].Title;
+        FixedBroken = "Broken";
+        status.innerHTML = FixedBroken;
+        status.setAttribute('class', FixedBroken);
+        status.setAttribute('style', "color:red");
+        status.setAttribute('align', 'center');
+        // status.setAttribute('onclick', "filterSelection(" + FixedBroken + ")");
+        simpleDiv.setAttribute('class', 'columnBroken');
+      }
+
+      var simpleDivClassFixed = document.getElementsByClassName('columnFixed');
+      var simpleDivClassBroken = document.getElementsByClassName('columnBroken');
+
+      function filterSelection(statusIssue) {
+        console.log(statusIssue);
+        if (statusIssue == 'Fixed') {
+          // simpleDivClassFixed.style.display = "block";
+          // simpleDivClassBroken.style.display = "none";
+          simpleDivClassFixed.setAttribute('style', "display:block");
+          simpleDivClassBroken.setAttribute('style', "display:none");
+        } else if(statusIssue == 'Broken'){
+          // simpleDivClassFixed.style.display = "none"
+          // simpleDivClassBroken.style.display = "block";
+          simpleDivClassFixed.setAttribute('style', "display:none");
+          simpleDivClassBroken.setAttribute('style', "display:block");
+        } else if(statusIssue == 'all'){
+          // simpleDivClassFixed.style.display = "block";
+          // simpleDivClassBroken.style.display = "block";
+          simpleDivClassFixed.setAttribute('style', "display:block");
+          simpleDivClassBroken.setAttribute('style', "display:block");
+        }
+      }
+
+      var stringImg = data[i].Media.split('web/').pop();
+
+      title.setAttribute('top', '5px');
+      title.setAttribute('align', 'center');
+
+
+      $(a).attr('href','/issue/' + data[i].idPost);
+
+      img.setAttribute('src', stringImg);
+      console.log(stringImg);
+      img.setAttribute('width', "450px");
+      img.setAttribute('height', "450px");
+      img.setAttribute('margin-left', "auto");
+      img.setAttribute('margin-right', "auto");
+      img.setAttribute('display', "block");
+      img.setAttribute('onclick', "goToIssue(data[i].idPost)");
+
+
+      column.setAttribute('class', 'column');
+
+      var div = document.getElementById('row');
+      column.appendChild(simpleDiv);
+      simpleDiv.appendChild(title);
+      simpleDiv.appendChild(a);
+      a.appendChild(img);
+      simpleDiv.appendChild(status);
+      div.appendChild(column);
+    }
+  }
+}
 // function issue() {
 //
 // //DISPLAY THE SELECTED POSTED PICTURE WITH INFO

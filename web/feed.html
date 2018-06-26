@@ -22,6 +22,24 @@
 				clear: both;
 				display: table;
 			}
+
+			/* Style the buttons */
+			.btn {
+			  border: none;
+			  outline: none;
+			  padding: 12px 16px;
+			  background-color: #f1f1f1;
+			  cursor: pointer;
+			}
+
+			.btn:hover {
+			  background-color: #ddd;
+			}
+
+			.btn.active {
+			  background-color: #666;
+			  color: white;
+			}
 		</style>
 	</head>
 	<body class="subpage">
@@ -57,7 +75,16 @@
 				</section>
 				<section id="three" class="wrapper">
 					<div class="inner">
-						<h4><center>FEED</center></h4>
+						<h4><center>FEED</center></h4><br>
+						<div id="myBtnContainer" align="center">
+						  <!-- <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+						  <button class="btn" onclick="filterSelection('Broken')"> Broken</button>
+						  <button class="btn" onclick="filterSelection('Fixed')"> Fixed</button> -->
+
+							<a href="/feed.html"><button id="all" class="btn active">Show all</button></a>
+						  <a href="/feedBroken.html"><button id="Broken" class="btn">Broken</button></a>
+						  <a href="/feedFixed.html"><button id="Fixed" class="btn">Fixed</button></a>
+						</div>
 						<div id="row" class="row">
 
 						</div>
@@ -74,7 +101,6 @@
 			</footer>
 		<!-- Scripts -->
 			<script src="js/jquery.min.js"></script>
-			<script src="js/main.js"></script>
 			<script type="text/javascript" language="javascript" src="javascript.js"></script>
 	    <script> showPost();</script>
 

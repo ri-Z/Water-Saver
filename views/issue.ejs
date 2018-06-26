@@ -22,6 +22,10 @@
 				clear: both;
 				display: table;
 			}
+			input#statusFixed, input#statusBroken
+			{
+				display: none;
+			}
 		</style>
 	</head>
 	<body class="subpage">
@@ -48,14 +52,26 @@
 			<section id="banner1" class="wrapper">
 				<div class="inner">
 					<header id="headerImage" class="align-center">
-              <h2 id="issueTitle"><%= issue.Title %></h2>
-						<div id="selectedImage">
-							<img id="issueImage" width="550px" height="550px" src="/<%- issue[0].Media.split('web/').pop() %>"></img>
-              <p id="issueDescription">Description: <%= issue[0].Description %></p>
-              <p id="issueFloor">Floor: <%= issue[0].Floor %></p>
-              <p id="issueRoom">Room: <%= issue[0].Room %></p>
-							<p id="issueStatus">Status: <% var brokenfixed; if(issue[0].Status == 0){brokenfixed = "Broken";} else{brokenfixed = "Fixed";} %>
-																					<%= brokenfixed; %></p>
+              <h2 id="issueTitle"><%= issue[0].Title %></h2>
+								<div id="selectedImage">
+									<img id="issueImage" width="550px" height="550px" src="/<%- issue[0].Media.split('web/').pop() %>"></img>
+		              <p id="issueDescription">Description: <%= issue[0].Description %></p>
+		              <p id="issueFloor">Floor: <%= issue[0].Floor %></p>
+		              <p id="issueRoom">Room: <%= issue[0].Room %></p>
+									<p id="issueStatus">Status: <% var brokenfixed; if(issue[0].Status == 0){brokenfixed = "Broken";} else{brokenfixed = "Fixed";} %>
+																							<%= brokenfixed; %></p>
+																							<form method="post" action="/updateStatus/<%= issue[0].idPost %>">
+																								<input id="statusFixed" type="radio" name="status" value="1" placeholder="Select a Status">
+																									<label for="statusFixed"><p>Fixed Already?</p></label>
+																								<input type="submit" class="btn btn-danger" name="Update" value="Update Status">
+																							</form>
+
+							<form method="get" action="/deletePost/<%= issue[0].idPost %>">
+									<input type="submit" class="btn btn-danger" name="Delete" value="Delete Post">
+							</form>
+							<a href="/feed">
+								<button type="button" name="button">Back</button>
+							</a>
               <!-- <p id="issueMedia">Media: <%= issue[0].Media %></p> -->
 						</div>
 					</header>
@@ -64,7 +80,16 @@
 						<div id="row" class="row">
 							<% for(var i = 0; i < issue.length; i++) { %>
 							<div class="column">
-								<img width="75%" height="" src="/<%- issue[i].Media.split('web/').pop() %>"></img>
+								<form method="post" action="/delete/<%= issue[i].idMedia %>">
+									<img width="75%" height="" src="/<%- issue[i].Media.split('web/').pop() %>"></img>
+
+
+									<!-- <input id="idPostDelete" name="Delete" type="submit" value="Delete"> -->
+									<!-- <input type="submit"  class = "btn btn-danger" name="Delete" value="Delete" onclick="deleteMediaFromIssue(delete[i].idMedia)"> -->
+									<input type="submit" class="btn btn-danger" name="Delete" value="Delete Picture">
+								</form>
+								<!-- onclick="deleteMediaFromIssue(issue[i].idMedia)" -->
+
 							</div>
 							<% } %>
 						</div>

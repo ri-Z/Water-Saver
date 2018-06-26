@@ -474,7 +474,7 @@ app.post('/uploadimage',multer({
 // });
 
 app.get('/showPost', function(request, response/*, next*/) {
-  db.query("Select * From Media m JOIN Post p ON (m.idPostFK = p.idPost) Group by idPostFK Order by idMedia DESC;", function(err, result, fields) {
+  db.query("Select * From Media m JOIN Post p ON (m.idPostFK = p.idPost) Group by idPostFK Order by Status, idPost DESC;", function(err, result, fields) {
     if (err) {throw err;} else {
     console.log("RESULT primeira query showpost: " + JSON.stringify(result));
     console.log("Example Data Result 0: " + result[0].Media);
@@ -484,6 +484,22 @@ app.get('/showPost', function(request, response/*, next*/) {
   }
     console.log("O super result é: " + JSON.stringify(result));
     response.send(result);
+  });
+});
+
+app.get('/Fixed', function(request, response) {
+  db.query("Select * From Media m JOIN Post p ON (m.idPostFK = p.idPost) WHERE Status = 1 Order by idPost DESC;", function(err, result, fields) {
+    if (err) {throw err;}
+    response.send(result);
+    // response.redirect('/feedFixedBroken.html')
+  });
+});
+
+app.get('/Broken', function(request, response) {
+  db.query("Select * From Media m JOIN Post p ON (m.idPostFK = p.idPost) WHERE Status = 0 Order by idPost DESC;", function(err, result, fields) {
+    if (err) {throw err;}
+    response.send(result);
+    // response.redirect('/feedFixedBroken.html')
   });
 });
 
@@ -504,8 +520,25 @@ app.get('/issue/:id', middleware.authenticationMiddleware, function(request, res
 });
 
 app.post('/delete/:id', middleware.authenticationMiddleware, function(request, response){
-   db.query("DELETE FROM Post WHERE idPost = ?;", [request.params.id], function(err, result) {
+   var queryDeletePicture = db.query("DELETE FROM Media WHERE idMedia = ?;", [request.params.id], function(err, result) {
      if (err) throw err;
    });
-  response.redirect('/feed');
+   // var queryRefreshIssue = db.query("Select * From Post p JOIN Media m ON (p.idPost = m.idPostFK) WHERE idPost = ?;", [request.params.id], function(err, result, fields) {
+   //   if (err) throw err;
+   //   response.render('/issue/:id', {issue: result});
+   // });
+});
+
+//NOT WORKING PROPERLY YET
+app.get('/deletePost/:id', middleware.authenticationMiddleware, function(request, response){
+   var queryDeletePost = db.query("DELETE FROM Media m JOIN Post p ON (p.idPost = m.idPostFK) WHERE idPost = ?;", [request.params.id], function(err, result) {
+     if (err) throw err;
+   });
+   response.redirect('/feed');
+});
+
+app.post('/updateStatus/:id', middleware.authenticationMiddleware, function(request, response){
+   var queryUpdateStatus = db.query("UPDATE Post SET Status = 1 WHERE idPost = ?;", [request.params.id], function(err, result) {
+     if (err) throw err;
+   });
 });

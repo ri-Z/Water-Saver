@@ -54,20 +54,14 @@ ALTER TABLE PlacesUsers ADD CONSTRAINT User_FK FOREIGN KEY (idUserFK) REFERENCES
 											 ADD CONSTRAINT Place_FK FOREIGN KEY (idPlaceFK) REFERENCES Place (idPlace);
     
     
-#let sql = 'INSERT INTO User(Admin, Name, Birth, Email, Password) VALUES (?, ?, ?, ?, ?);'; let values = [request.body.admin, request.body.name, request.body.age, request.body.email, hash];
+#INSERT INTO User(Admin, Name, Birth, Email, Password) VALUES (1, Jorge, 20, email@email.com, pass)
 #SELECT * FROM User
-#DELETE FROM `User` WHERE `User`.`idUser` = 3 (for example)
+#DELETE FROM `User` WHERE `User`.`idUser` = 3
 
 #SELECT LAST_INSERT_ID() as user_id
-#SELECT idUser, Password FROM User WHERE Name = ?',[username]
+#SELECT idUser, Password FROM User WHERE Name = Jorge
 
-#var data = [
-      #req.body.title,
-      #req.body.description,
-      #req.body.floor,
-      #req.body.room
-    #];
-#db.query("INSERT INTO Post(Title, Description, Floor, Room) VALUES (?, ?, ?, ?);" , data
+#INSERT INTO Post(Title, Description, Floor, Room) VALUES (Titulo, Descricao, 6, 64);
 #SELECT LAST_INSERT_ID() as post_id
 
 #Select * From Post Order by idPost DESC;
@@ -82,7 +76,11 @@ ALTER TABLE Post ADD CONSTRAINT Media_FK FOREIGN KEY (idMediaFK) REFERENCES Medi
 ALTER TABLE Post DROP COLUMN Media;
 
 #Select session_id From sessions;
-#db.query('SELECT idUser, Password FROM User WHERE Name = ?',[username]
-#Select * From Media m JOIN Post p ON (m.idPostFK = p.idPost) Group by idPostFK Order by idMedia DESC;
-#db.query("Select * From Post p JOIN Media m ON (p.idPost = m.idPostFK) WHERE idPost = ?;", [request.params.id]
-#db.query("INSERT INTO Media(idPostFK, Media) VALUES (?, ?);", [rows.insertId, req.files[i].path]
+#SELECT idUser, Password FROM User WHERE Name = Jorge
+#Select * From Media m JOIN Post p ON (m.idPostFK = p.idPost) Group by idPostFK Order by Status, idPost DESC;
+#Select * From Post p JOIN Media m ON (p.idPost = m.idPostFK) WHERE idPost = 1;
+#DELETE FROM Media WHERE idMedia = 49;
+#DELETE FROM Media m JOIN Post p ON (p.idPost = m.idPostFK) WHERE idPost = 1
+#UPDATE Post SET Status = 1 WHERE idPost = 1
+
+#INSERT INTO Media(idPostFK, Media) VALUES (?, ?);", [rows.insertId, web/uploads/file-1529345736055.jpg] - this query is used after INSERT INTO Post(Title, Description, Floor, Room, Status), so it inserts the id of the Post that has been inserted to the DB, so it should be the latest idPost created

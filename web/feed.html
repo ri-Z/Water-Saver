@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>IADE REPORTER</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/main.css">
+		<script type="text/javascript" src="jQuery.js"></script>
+		<style media="screen">
+			*{
+				box-sizing: border-box;
+			}
+
+			.column{
+				float: left;
+				width: 33.33%;
+				padding:5px;
+			}
+
+			.row::after{
+				content: "";
+				clear: both;
+				display: table;
+			}
+		</style>
+	</head>
+	<body class="subpage">
+
+		<header id="header">
+			<div class="inner">
+ <a href="/" class="logo"><strong>REPORTER</strong> for IADE</a>
+ <nav id="nav">
+					<a href="/">Home</a>
+					<a href="About.html">About</a>
+					<a href="/feed">Feed</a>
+					<a href="SignUp.html">SignUp</a>
+					<a href="/login">LogIn</a>
+					<!-- <a href="/post">Make a Post</a> -->
+					<!-- <a href="/logout">Logout</a> -->
+				</nav>
+				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+			</div>
+		</header>
+
+		<!-- Main -->
+
+			<section id="banner1" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2><img src="/IADE.png" ></h2>
+						<p>Address: Av. Dom Carlos I 4, 1200-649 Lisboa<br>
+							Phone: 21 393 9600</p>
+					</header>
+					<footer>
+						<a href="/post" class="button">Make a Post</a>
+					</footer>
+				</section>
+				<section id="three" class="wrapper">
+					<div class="inner">
+						<h4><center>FEED</center></h4>
+						<div id="row" class="row">
+
+						</div>
+					</div>
+				</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="copyright">
+						&copy; Reporter for <a href="https://www.iade.europeia.pt/">IADE</a>.
+					</div>
+				</div>
+			</footer>
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/main.js"></script>
+			<script type="text/javascript" language="javascript" src="javascript.js"></script>
+	    <script> showPost();</script>
+
+	</body>
+</html>
